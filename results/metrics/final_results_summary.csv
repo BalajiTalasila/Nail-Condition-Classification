@@ -1,0 +1,4 @@
+Model,Accuracy,Precision_Macro,Recall_Macro,F1_Macro,F1_Weighted,MCC,Average_Inference_Time_ms
+ConvNeXtV2-Tiny,98.26,98.45,98.04,98.23,98.26,97.9,7.88
+DenseNet121,97.57,97.79,97.85,97.81,97.56,97.06,4.07
+EfficientNet-B0,98.44,98.54,98.22,98.36,98.44,98.11,2.14

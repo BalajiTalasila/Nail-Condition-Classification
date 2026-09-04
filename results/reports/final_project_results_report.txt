@@ -1,0 +1,104 @@
+======================================================================
+FINAL PROJECT RESULTS REPORT
+======================================================================
+
+Generated on: 05-09-2026 00:26:23
+
+
+----------------------------------------------------------------------
+1. MODEL PERFORMANCE COMPARISON
+----------------------------------------------------------------------
+
+Model: ConvNeXtV2-Tiny
+Accuracy: 98.26%
+Macro F1-Score: 98.23%
+MCC: 97.90%
+Inference Time: 7.88 ms/image
+
+Model: DenseNet121
+Accuracy: 97.57%
+Macro F1-Score: 97.81%
+MCC: 97.06%
+Inference Time: 4.07 ms/image
+
+Model: EfficientNet-B0
+Accuracy: 98.44%
+Macro F1-Score: 98.36%
+MCC: 98.11%
+Inference Time: 2.14 ms/image
+
+
+----------------------------------------------------------------------
+2. BEST MODEL
+----------------------------------------------------------------------
+
+Selected Model: EfficientNet-B0
+Overall Accuracy: 98.44%
+Macro F1-Score: 98.36%
+MCC: 98.11%
+Inference Time: 2.14 ms/image
+
+Conclusion:
+EfficientNet-B0 achieved the highest overall classification performance among the evaluated models. It also demonstrated the fastest average inference time, making it the most suitable model for the final nail condition classification system.
+
+
+----------------------------------------------------------------------
+3. BEST MODEL FOR EACH CLASS
+----------------------------------------------------------------------
+
+Class: Acral_Lentiginous_Melanoma
+Best Model: EfficientNet-B0
+Precision: 100.00%
+Recall: 99.12%
+F1-Score: 99.56%
+Specificity: 100.00%
+
+Class: Healthy_Nail
+Best Model: DenseNet121
+Precision: 100.00%
+Recall: 100.00%
+F1-Score: 100.00%
+Specificity: 100.00%
+
+Class: Onychogryphosis
+Best Model: EfficientNet-B0
+Precision: 100.00%
+Recall: 98.08%
+F1-Score: 99.03%
+Specificity: 100.00%
+
+Class: blue_finger
+Best Model: DenseNet121
+Precision: 96.84%
+Recall: 100.00%
+F1-Score: 98.40%
+Specificity: 99.38%
+
+Class: clubbing
+Best Model: ConvNeXtV2-Tiny
+Precision: 98.32%
+Recall: 99.15%
+F1-Score: 98.73%
+Specificity: 99.56%
+
+Class: pitting
+Best Model: ConvNeXtV2-Tiny
+Precision: 97.96%
+Recall: 97.96%
+F1-Score: 97.96%
+Specificity: 99.58%
+
+
+======================================================================
+4. FINAL CONCLUSION
+======================================================================
+
+Three deep learning architectures were evaluated for the six-class nail condition classification task: ConvNeXtV2-Tiny, DenseNet121, and EfficientNet-B0.
+
+Among the evaluated architectures, EfficientNet-B0 demonstrated the best overall performance.
+It achieved an accuracy of 98.44%, a Macro F1-score of 98.36%, and an MCC of 98.11%.
+The model also achieved the fastest average inference time of 2.14 ms per image.
+
+The experimental results therefore support the selection of EfficientNet-B0 as the final model for the classification system.
+
+Grad-CAM visualizations were generated for the selected model to provide visual interpretability and identify the image regions contributing to classification decisions.
