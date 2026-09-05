@@ -1,0 +1,5 @@
+Image_Path,True_Label,EfficientNet_B0_Prediction,Proposed_Model_Prediction,EfficientNet_B0_Correct,Proposed_Model_Correct,Comparison_Outcome
+data/processed/test/Acral_Lentiginous_Melanoma/Screen-Shot-2021-11-19-at-2-11-28-AM_png.rf.2196b737c3e2e387b824e8ff30fbf610.jpg,Acral_Lentiginous_Melanoma,Acral_Lentiginous_Melanoma,clubbing,True,False,Only EfficientNet Correct
+data/processed/test/blue_finger/Screen-Shot-2021-11-22-at-8-19-18-PM_png.rf.5b65c72771d63f6ed8e08fa9d3dfab09.jpg,blue_finger,blue_finger,Onychogryphosis,True,False,Only EfficientNet Correct
+data/processed/test/clubbing/Screen-Shot-2021-10-26-at-10-59-07-AM_png.rf.823070e42ed6f44abff710ccc1b081c6.jpg,clubbing,clubbing,Onychogryphosis,True,False,Only EfficientNet Correct
+data/processed/test/clubbing/Screen-Shot-2021-11-22-at-8-05-33-AM_png.rf.d9d0293f6039183897c66c2c1bd13d58.jpg,clubbing,clubbing,blue_finger,True,False,Only EfficientNet Correct

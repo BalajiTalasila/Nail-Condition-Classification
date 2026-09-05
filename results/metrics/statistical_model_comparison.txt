@@ -1,0 +1,31 @@
+======================================================================
+STATISTICAL MODEL COMPARISON
+======================================================================
+
+Total Test Images: 576
+
+CONTINGENCY TABLE
+----------------------------------------------------------------------
+Both Models Correct: 563
+Only EfficientNet-B0 Correct: 4
+Only Proposed Model Correct: 2
+Both Models Incorrect: 7
+
+MODEL ACCURACY
+----------------------------------------------------------------------
+EfficientNet-B0 Accuracy: 98.4375%
+Proposed Model Accuracy: 98.0903%
+Accuracy Difference: 0.3472 percentage points
+
+MCNEMAR'S TEST
+----------------------------------------------------------------------
+Test Statistic: 2.0
+P-Value: 0.687500
+Significance Level: 0.05
+Result: Not Statistically Significant
+
+INTERPRETATION
+----------------------------------------------------------------------
+The performance difference between EfficientNet-B0 and the proposed model is not statistically significant.
+
+======================================================================

@@ -1,0 +1,2 @@
+number_of_models,pairwise_comparisons,significant_comparisons,best_overall_model,best_model_accuracy_percent,best_model_macro_f1_percent
+4,6,0,Proposed Attention EfficientNet-B0,95.77464788732394,94.33019361590792

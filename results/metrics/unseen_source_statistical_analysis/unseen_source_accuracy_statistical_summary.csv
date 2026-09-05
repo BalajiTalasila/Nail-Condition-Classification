@@ -1,0 +1,5 @@
+model,model_display,correct_predictions,total_images,accuracy_percent
+densenet121,DenseNet121,68,71,95.77464788732394
+proposed_attention_efficientnet_b0,Proposed Attention EfficientNet-B0,68,71,95.77464788732394
+convnextv2_tiny,ConvNeXtV2-Tiny,67,71,94.36619718309859
+efficientnet_b0,EfficientNet-B0,66,71,92.95774647887323

@@ -1,0 +1,17 @@
+DISCUSSION
+
+================================================================================
+
+
+
+The unseen-source evaluation demonstrated that Proposed Attention EfficientNet-B0 provided the strongest overall balance between classification performance and confidence calibration.
+
+The proposed model achieved the highest observed classification performance, although DenseNet121 produced identical observed accuracy and macro F1-score on the evaluated test set.
+
+A notable advantage of the proposed model was its confidence calibration performance. The model achieved the lowest ECE among the evaluated architectures, suggesting that its predicted confidence values were more closely aligned with empirical correctness.
+
+Reliable confidence estimates are particularly important for image classification systems intended for decision support, because confidence information can help distinguish highly reliable predictions from predictions that may require additional review.
+
+However, the pairwise McNemar tests did not identify statistically significant differences in accuracy among the models. This result should be considered when interpreting the observed ranking, especially because the unseen-source evaluation contained a relatively limited number of images.
+
+Consequently, the proposed model should be described as demonstrating the strongest observed overall balance of predictive performance and calibration rather than being conclusively superior in statistically significant classification accuracy.

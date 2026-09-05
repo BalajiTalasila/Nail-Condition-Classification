@@ -1,0 +1,53 @@
+RESULTS
+================================================================================
+
+Unseen-Source Evaluation
+All four models were evaluated on the same unseen-source test set containing 71 images. Performance was assessed using accuracy, macro-averaged precision, macro-averaged recall, macro F1-score, weighted F1-score, and confidence calibration metrics.
+
+Classification Performance
+The proposed Attention EfficientNet-B0 achieved an accuracy of 95.77% and a macro F1-score of 94.33% on the unseen-source test set.
+DenseNet121 achieved identical observed accuracy and macro F1-score on this evaluation set, while ConvNeXtV2-Tiny and EfficientNet-B0 produced lower observed classification performance.
+
+Confidence Calibration
+The proposed Attention EfficientNet-B0 achieved an Expected Calibration Error (ECE) of 3.82% and a Brier Score of 0.0356.
+Among the evaluated models, the proposed model achieved the lowest ECE, indicating the strongest agreement between predicted confidence and observed classification correctness according to this metric.
+
+Overall Model Ranking
+Using a weighted ranking framework that prioritised classification accuracy and macro F1-score while also considering ECE and Brier Score, Proposed Attention EfficientNet-B0 obtained the highest overall rank.
+
+Statistical Significance
+Pairwise McNemar testing was performed across 6 model comparisons.
+No statistically significant differences in classification accuracy were identified among the evaluated models on the unseen-source test set.
+Therefore, the observed differences in model accuracy should not be interpreted as statistically significant superiority.
+
+
+DISCUSSION
+================================================================================
+
+The unseen-source evaluation demonstrated that Proposed Attention EfficientNet-B0 provided the strongest overall balance between classification performance and confidence calibration.
+The proposed model achieved the highest observed classification performance, although DenseNet121 produced identical observed accuracy and macro F1-score on the evaluated test set.
+A notable advantage of the proposed model was its confidence calibration performance. The model achieved the lowest ECE among the evaluated architectures, suggesting that its predicted confidence values were more closely aligned with empirical correctness.
+Reliable confidence estimates are particularly important for image classification systems intended for decision support, because confidence information can help distinguish highly reliable predictions from predictions that may require additional review.
+However, the pairwise McNemar tests did not identify statistically significant differences in accuracy among the models. This result should be considered when interpreting the observed ranking, especially because the unseen-source evaluation contained a relatively limited number of images.
+Consequently, the proposed model should be described as demonstrating the strongest observed overall balance of predictive performance and calibration rather than being conclusively superior in statistically significant classification accuracy.
+
+
+KEY FINDINGS
+================================================================================
+
+1. Proposed Attention EfficientNet-B0 ranked first according to the combined performance and calibration framework.
+2. The proposed model achieved 95.77% accuracy and 94.33% macro F1-score.
+3. The proposed model achieved the lowest ECE of 3.82% among the evaluated models.
+4. DenseNet121 matched the proposed model in observed accuracy and macro F1-score.
+5. No statistically significant pairwise differences in classification accuracy were identified using McNemar testing.
+6. The results indicate that confidence calibration provides useful additional information beyond classification accuracy alone.
+
+
+STUDY LIMITATIONS
+================================================================================
+
+1. The unseen-source test set contained a relatively small number of images, which limits statistical power.
+2. The absence of statistically significant differences does not necessarily indicate that all models have identical performance; larger independent test sets would provide greater statistical sensitivity.
+3. The evaluation was performed on the available unseen-source dataset, and additional external datasets would strengthen conclusions regarding generalisation.
+4. Model ranking was based on a weighted decision framework. Although the weighting prioritised classification performance, alternative weighting strategies could produce different overall rankings.
+5. Confidence calibration was assessed using ECE, MCE, and Brier Score, and these metrics may emphasise different characteristics of probabilistic predictions.

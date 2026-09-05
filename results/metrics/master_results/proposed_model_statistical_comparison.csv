@@ -1,0 +1,4 @@
+Baseline Model,Proposed Model,Baseline Accuracy (%),Proposed Accuracy (%),Accuracy Difference (%),McNemar p-value,McNemar Result,Wilcoxon p-value,Wilcoxon Result,Rank-Biserial Correlation,Effect Size,Cohen's dz,Cohen's dz Interpretation
+ConvNeXtV2-Tiny,Proposed Attention EfficientNet-B0,94.3661971830986,95.77464788732394,1.4084507042253502,1.0,Not significant,1.581581228516149e-07,*** (p < 0.001),0.8028169014084507,Large,0.408069348686285,Small
+DenseNet121,Proposed Attention EfficientNet-B0,95.77464788732394,95.77464788732394,0.0,,No discordant pairs,1.0088419094940515e-09,*** (p < 0.001),0.8873239436619719,Large,0.6663868520615686,Medium
+EfficientNet-B0,Proposed Attention EfficientNet-B0,92.95774647887325,95.77464788732394,2.8169014084507005,0.5,Not significant,3.118163840545282e-11,*** (p < 0.001),0.943661971830986,Large,0.8107140560502768,Large

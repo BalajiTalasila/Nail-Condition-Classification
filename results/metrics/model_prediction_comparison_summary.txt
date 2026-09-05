@@ -1,0 +1,21 @@
+======================================================================
+PREDICTION-LEVEL MODEL COMPARISON
+======================================================================
+
+Total Test Images: 576
+
+COMPARISON OUTCOMES
+----------------------------------------------------------------------
+Both Models Correct: 563
+Both Models Incorrect: 7
+Only EfficientNet-B0 Correct: 4
+Only Proposed Model Correct: 2
+
+PERCENTAGE DISTRIBUTION
+----------------------------------------------------------------------
+Both Correct: 97.74%
+Both Incorrect: 1.22%
+Only EfficientNet Correct: 0.69%
+Only Proposed Model Correct: 0.35%
+
+======================================================================

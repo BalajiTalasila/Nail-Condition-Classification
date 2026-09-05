@@ -1,0 +1,6 @@
+image_path,true_class,predicted_class,confidence
+C:\Users\venka\Documents\Project\data\evaluation\unseen_source_test\Onychogryphosis\Screenshot-2021-11-19-020122_png.rf.976bcc8def79d682a075beeb616443f6.jpg,Onychogryphosis,clubbing,0.49788463
+C:\Users\venka\Documents\Project\data\evaluation\unseen_source_test\Onychogryphosis\Screenshot-2021-11-19-020122_png.rf.f6e29d323eae406d6256206434056988.jpg,Onychogryphosis,pitting,0.5974604
+C:\Users\venka\Documents\Project\data\evaluation\unseen_source_test\clubbing\Screen-Shot-2021-11-22-at-9-24-45-AM_png.rf.0cf23ca344639d3e905649630b60fee6.jpg,clubbing,blue_finger,0.38250813
+C:\Users\venka\Documents\Project\data\evaluation\unseen_source_test\pitting\272_jpg.rf.70a63e08bc17a69600c13dce11760900.jpg,pitting,clubbing,0.452258
+C:\Users\venka\Documents\Project\data\evaluation\unseen_source_test\pitting\272_jpg.rf.cfc92e83f033e5aaa1c749c21d380b76.jpg,pitting,blue_finger,0.44684267

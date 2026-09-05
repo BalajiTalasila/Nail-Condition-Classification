@@ -1,0 +1,5 @@
+Model,Test Images,Accuracy (%),Average Confidence (%),Confidence - Accuracy (%),ECE (%),MCE (%),Brier Score
+Proposed Attention EfficientNet-B0,71,95.77,96.95,+1.18,3.82,29.01,0.0719
+DenseNet121,71,95.77,90.30,-5.47,6.31,42.53,0.0888
+ConvNeXtV2-Tiny,71,94.37,92.98,-1.39,5.47,69.45,0.0749
+EfficientNet-B0,71,92.96,89.00,-3.96,10.66,59.75,0.0729

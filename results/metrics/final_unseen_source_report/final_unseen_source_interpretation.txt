@@ -1,0 +1,26 @@
+FINAL UNSEEN-SOURCE EVALUATION INTERPRETATION
+======================================================================
+
+Dataset and evaluation setup:
+- Number of evaluated models: 4
+- Number of unseen-source test images: 71
+- All models were evaluated on the same aligned image set.
+
+Best overall model:
+- Proposed Attention EfficientNet-B0
+- Accuracy: 95.77%
+- Macro F1-score: 94.33%
+- Expected Calibration Error: 3.82%
+- Brier Score: 0.035550
+- Calibration behavior: Well calibrated
+
+Statistical significance analysis:
+- Pairwise McNemar comparisons: 6
+- Statistically significant comparisons detected: 0
+- No statistically significant accuracy differences were observed between the evaluated models on the 71-image unseen-source test set.
+- Therefore, differences in observed accuracy should be interpreted carefully, particularly because of the limited unseen-source sample size.
+
+Overall interpretation:
+- Proposed Attention EfficientNet-B0 achieved the strongest overall balance according to the weighted ranking framework.
+- The final ranking considers predictive performance together with confidence calibration.
+- Accuracy and Macro F1-score receive higher weight than calibration metrics in the overall ranking.

@@ -1,0 +1,5 @@
+model,total_images,correct_predictions,incorrect_predictions,error_rate_percent
+ConvNeXtV2-Tiny,71,67,4,5.633802816901409
+DenseNet121,71,68,3,4.225352112676056
+EfficientNet-B0,71,66,5,7.042253521126761
+Proposed Attention EfficientNet-B0,71,68,3,4.225352112676056

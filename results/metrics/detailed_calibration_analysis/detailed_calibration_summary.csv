@@ -1,0 +1,5 @@
+total_images,accuracy_percent,average_confidence_percent,confidence_accuracy_gap_percent,calibration_behavior,correct_average_confidence_percent,incorrect_average_confidence_percent,high_confidence_errors,total_errors,model,model_display,high_confidence_error_rate_percent
+576,98.26388888888889,94.10242046354168,-4.1614684253472145,Underconfident,94.67420841342756,61.739222500000004,2,10,convnextv2_tiny,ConvNeXtV2-Tiny,0.3472222222222222
+576,97.56944444444444,91.48044694618058,-6.08899749826387,Underconfident,92.01361269572953,70.07765042857143,2,14,densenet121,DenseNet121,0.3472222222222222
+576,98.4375,92.23112668229167,-6.206373317708325,Underconfident,92.75554395590828,59.192838444444426,0,9,efficientnet_b0,EfficientNet-B0,0.0
+576,98.09027777777779,98.92202393055557,0.8317461527777903,Well calibrated,99.31511387433628,78.731495,5,11,proposed_attention_efficientnet_b0,Proposed Attention EfficientNet-B0,0.8680555555555556

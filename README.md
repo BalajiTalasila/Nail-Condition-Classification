@@ -1,146 +1,123 @@
 # 💅 Nail Condition Classification System
 
-An AI-powered deep learning system for the classification of nail conditions from images using convolutional neural networks and transfer learning.
+An AI-powered deep learning system for automated classification of nail conditions from images using multiple convolutional neural network architectures.
 
-The proposed system uses **EfficientNet-B0** as the final model and incorporates **Grad-CAM (Gradient-weighted Class Activation Mapping)** to provide visual explanations for model predictions.
+The project compares three deep learning models:
 
----
-
-## 📌 Project Overview
-
-Nail-related conditions can exhibit visual characteristics that may be identified from images. This project investigates the use of deep learning models for automatic classification of six nail-related conditions.
-
-Three deep learning architectures were trained and evaluated:
-
-- EfficientNet-B0
 - ConvNeXtV2-Tiny
 - DenseNet121
+- EfficientNet-B0
 
-The models were compared using multiple evaluation metrics, including:
+After extensive training and evaluation, **EfficientNet-B0 achieved the best overall performance** and was selected as the proposed model. The system also includes **Grad-CAM explainability** and an interactive **Streamlit web application** for real-time predictions.
 
-- Accuracy
-- Precision
-- Recall
-- Macro F1-Score
-- Weighted F1-Score
+---
+
+# 📌 Project Overview
+
+Nail abnormalities can provide important visual indicators of various medical conditions. However, manual identification and classification can be challenging and may require professional expertise.
+
+This project applies deep learning techniques to classify nail images into six different categories. Multiple state-of-the-art convolutional neural network architectures were trained and evaluated to identify the most effective model.
+
+The final system uses **EfficientNet-B0** as the proposed model because it achieved the best combination of:
+
+- Classification accuracy
+- Macro F1-score
 - Matthews Correlation Coefficient (MCC)
-- Inference Time
+- Inference speed
 
-Based on the experimental results, **EfficientNet-B0 achieved the best overall performance**.
+The application also integrates **Grad-CAM (Gradient-weighted Class Activation Mapping)** to provide visual explanations for model predictions.
 
----
-
-# 🎯 Supported Classes
-
-The system classifies images into the following six categories:
-
-1. Acral Lentiginous Melanoma
-2. Healthy Nail
-3. Onychogryphosis
-4. Blue Finger
-5. Clubbing
-6. Pitting
+> ⚠️ **Disclaimer:** This project is developed for educational and research purposes only. It should not be used as a replacement for professional medical diagnosis.
 
 ---
 
-# 🗂️ Dataset
+# 🎯 Objectives
 
-The dataset used in this project was obtained from Kaggle:
+The primary objectives of this project are:
 
-**Nail Disease Detection Dataset**
-
-Dataset source: Nikhil Gurav on Kaggle
-
-> Note: The dataset is not included in this repository because of its size. Please download the dataset separately from Kaggle and organize it according to the project directory structure.
-
----
-
-# 🧠 Models Evaluated
-
-Three transfer learning models were evaluated in this project.
-
-| Model | Accuracy | Macro F1-Score | MCC | Average Inference Time |
-|---|---:|---:|---:|---:|
-| ConvNeXtV2-Tiny | 98.26% | 98.23% | 97.90% | 7.88 ms |
-| DenseNet121 | 97.57% | 97.81% | 97.06% | 4.07 ms |
-| **EfficientNet-B0** | **98.44%** | **98.36%** | **98.11%** | **2.14 ms** |
+- Develop an automated nail condition classification system.
+- Compare multiple deep learning architectures.
+- Evaluate model performance using multiple metrics.
+- Identify the best-performing model.
+- Analyze class-wise performance.
+- Implement Grad-CAM for explainable AI.
+- Develop a user-friendly web application for image classification.
 
 ---
 
-# 🏆 Best Model
+# 🩺 Supported Nail Conditions
 
-## EfficientNet-B0
+The system classifies nail images into the following six categories:
 
-EfficientNet-B0 was selected as the proposed model because it achieved the best overall experimental performance.
-
-### Performance
-
-- **Test Accuracy:** 98.44%
-- **Macro F1-Score:** 98.36%
-- **Matthews Correlation Coefficient:** 98.11%
-- **Average Inference Time:** 2.14 ms per image
-
-Among the evaluated models, EfficientNet-B0 achieved:
-
-- The highest accuracy
-- The highest Macro F1-Score
-- The highest MCC
-- The fastest inference time
-
-Therefore, EfficientNet-B0 provided the best combination of classification performance and computational efficiency.
+| Class | Condition |
+|---|---|
+| 1 | Acral Lentiginous Melanoma |
+| 2 | Healthy Nail |
+| 3 | Onychogryphosis |
+| 4 | Blue Finger |
+| 5 | Clubbing |
+| 6 | Pitting |
 
 ---
 
-# 📊 Per-Class Performance
+# 🧠 Models Used
 
-The best-performing model varied slightly across individual classes.
+Three deep learning architectures were trained and evaluated.
 
-| Class | Best Model | F1-Score |
-|---|---|---:|
-| Acral Lentiginous Melanoma | EfficientNet-B0 | 99.56% |
-| Healthy Nail | DenseNet121 | 100.00% |
-| Onychogryphosis | EfficientNet-B0 | 99.03% |
-| Blue Finger | DenseNet121 | 98.40% |
-| Clubbing | ConvNeXtV2-Tiny | 98.73% |
-| Pitting | ConvNeXtV2-Tiny | 97.96% |
+## 1. ConvNeXtV2-Tiny
 
-Although different models achieved the highest F1-score for certain individual classes, EfficientNet-B0 demonstrated the best overall performance across the complete test dataset.
+ConvNeXtV2-Tiny is a modern convolutional neural network architecture designed for efficient and high-performance image classification.
+
+## 2. DenseNet121
+
+DenseNet121 uses dense connections between layers, enabling efficient feature reuse and improved gradient flow.
+
+## 3. EfficientNet-B0
+
+EfficientNet-B0 uses compound scaling to balance network depth, width, and image resolution efficiently.
+
+Based on the experimental results, **EfficientNet-B0 was selected as the proposed model**.
 
 ---
 
-# 🔬 Methodology
+# 🏗️ Project Workflow
 
-The project follows the following workflow:
+The complete workflow of the project is shown below:
 
 ```text
 Dataset Collection
         │
         ▼
-Data Preprocessing
+Data Cleaning
         │
         ▼
-Dataset Splitting
+Duplicate Detection
+        │
+        ▼
+Dataset Preparation
+        │
+        ▼
+Train / Validation / Test Split
         │
         ▼
 Model Training
         │
-        ├── ConvNeXtV2-Tiny
+ ┌──────┼───────────────┐
+ ▼      ▼               ▼
+ConvNeXt DenseNet121 EfficientNet-B0
+ ▼      ▼               ▼
+ └──────┼───────────────┘
+        ▼
+Model Evaluation
         │
-        ├── DenseNet121
+        ▼
+Performance Comparison
         │
-        └── EfficientNet-B0
-                │
-                ▼
-        Model Evaluation
-                │
-                ▼
-        Performance Comparison
-                │
-                ▼
-        Best Model Selection
-                │
-                ▼
-        Grad-CAM Explainability
-                │
-                ▼
-        Streamlit Deployment
+        ▼
+Best Model Selection
+        │
+        ▼
+Grad-CAM Explainability
+        │
+        ▼
+Streamlit Web Application

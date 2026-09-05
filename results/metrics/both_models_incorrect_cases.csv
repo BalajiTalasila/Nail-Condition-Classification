@@ -1,0 +1,8 @@
+Image_Path,True_Label,EfficientNet_B0_Prediction,Proposed_Model_Prediction,EfficientNet_B0_Correct,Proposed_Model_Correct,Comparison_Outcome
+data/processed/test/Acral_Lentiginous_Melanoma/Screen-Shot-2021-11-20-at-8-35-45-PM_png.rf.d8bf9d4fce4fbf529a7bc20a35774965.jpg,Acral_Lentiginous_Melanoma,blue_finger,blue_finger,False,False,Both Incorrect
+data/processed/test/Healthy_Nail/h132_png.rf.f837aa21de478ec2bff354d8fb39afff.jpg,Healthy_Nail,clubbing,blue_finger,False,False,Both Incorrect
+data/processed/test/Healthy_Nail/h30_png.rf.d024b6b6f73a9a4c7d5e3b6037195d6d.jpg,Healthy_Nail,blue_finger,blue_finger,False,False,Both Incorrect
+data/processed/test/Onychogryphosis/Screenshot-2021-11-19-020122_png.rf.976bcc8def79d682a075beeb616443f6.jpg,Onychogryphosis,clubbing,clubbing,False,False,Both Incorrect
+data/processed/test/blue_finger/Screen-Shot-2021-11-22-at-9-05-44-PM_png.rf.e7dc8a7529828409c6abf084a909ab63.jpg,blue_finger,pitting,pitting,False,False,Both Incorrect
+data/processed/test/pitting/272_jpg.rf.70a63e08bc17a69600c13dce11760900.jpg,pitting,clubbing,Acral_Lentiginous_Melanoma,False,False,Both Incorrect
+data/processed/test/pitting/272_jpg.rf.cfc92e83f033e5aaa1c749c21d380b76.jpg,pitting,blue_finger,Acral_Lentiginous_Melanoma,False,False,Both Incorrect

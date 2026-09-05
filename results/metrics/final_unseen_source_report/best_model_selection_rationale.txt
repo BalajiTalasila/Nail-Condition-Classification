@@ -1,0 +1,26 @@
+BEST MODEL SELECTION RATIONALE
+======================================================================
+
+Selected model: Proposed Attention EfficientNet-B0
+
+Selection criteria:
+1. Predictive accuracy
+2. Macro F1-score
+3. Expected Calibration Error
+4. Brier Score
+5. Overall weighted ranking
+
+Model characteristics:
+- Accuracy: 95.77%
+- Macro Precision: 96.30%
+- Macro Recall: 93.45%
+- Macro F1-score: 94.33%
+- Weighted F1-score: 95.72%
+- ECE: 3.82%
+- Brier Score: 0.035550
+- Calibration behavior: Well calibrated
+
+Scientific interpretation:
+Proposed Attention EfficientNet-B0 was selected as the strongest overall model based on the combined ranking framework.
+This selection represents the best balance between predictive performance and confidence calibration among the evaluated models.
+However, the McNemar statistical significance analysis should be considered when making claims about superiority in accuracy.

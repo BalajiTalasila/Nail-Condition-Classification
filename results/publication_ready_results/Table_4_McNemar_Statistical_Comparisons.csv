@@ -1,0 +1,7 @@
+Model A,Model B,both_correct,both_wrong,discordant_predictions,accuracy_difference_percent,McNemar p-value,Statistically Significant,conclusion
+convnextv2_tiny,densenet121,67,3,1,-1.408450704225345,1.0,False,No statistically significant difference
+convnextv2_tiny,efficientnet_b0,66,4,1,1.4084507042253591,1.0,False,No statistically significant difference
+convnextv2_tiny,proposed_attention_efficientnet_b0,67,3,1,-1.408450704225345,1.0,False,No statistically significant difference
+densenet121,efficientnet_b0,66,3,2,2.816901408450704,0.5,False,No statistically significant difference
+densenet121,proposed_attention_efficientnet_b0,68,3,0,0.0,1.0,False,No statistically significant difference
+efficientnet_b0,proposed_attention_efficientnet_b0,66,3,2,-2.816901408450704,0.5,False,No statistically significant difference

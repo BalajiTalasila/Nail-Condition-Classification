@@ -1,0 +1,5 @@
+Rank,Model,Test Images,Correct,Errors,Accuracy (%),Macro Precision (%),Macro Recall (%),Macro F1 (%),Weighted F1 (%)
+1,Proposed Attention EfficientNet-B0,71,68,3,95.77,96.3,93.45,94.33,95.72
+2,DenseNet121,71,68,3,95.77,96.3,93.45,94.33,95.72
+3,ConvNeXtV2-Tiny,71,67,4,94.37,95.29,89.29,90.85,93.95
+4,EfficientNet-B0,71,66,5,92.96,93.68,88.59,89.49,92.63

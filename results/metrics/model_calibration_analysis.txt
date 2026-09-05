@@ -1,0 +1,18 @@
+======================================================================
+MODEL CALIBRATION ANALYSIS
+======================================================================
+
+EFFICIENTNET-B0
+----------------------------------------------------------------------
+Expected Calibration Error (ECE): 0.065050
+Multiclass Brier Score: 0.004695
+
+PROPOSED ATTENTION-EFFICIENTNET-B0
+----------------------------------------------------------------------
+Expected Calibration Error (ECE): 0.008949
+Multiclass Brier Score: 0.004805
+
+INTERPRETATION
+----------------------------------------------------------------------
+Lower ECE indicates better confidence calibration.
+Lower Brier Score indicates better probabilistic predictions.

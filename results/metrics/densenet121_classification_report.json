@@ -1,0 +1,51 @@
+{
+    "Acral_Lentiginous_Melanoma": {
+        "precision": 0.9655172413793104,
+        "recall": 0.9911504424778761,
+        "f1-score": 0.9781659388646288,
+        "support": 113.0
+    },
+    "Healthy_Nail": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1-score": 1.0,
+        "support": 51.0
+    },
+    "Onychogryphosis": {
+        "precision": 0.9900990099009901,
+        "recall": 0.9615384615384616,
+        "f1-score": 0.975609756097561,
+        "support": 104.0
+    },
+    "blue_finger": {
+        "precision": 0.968421052631579,
+        "recall": 1.0,
+        "f1-score": 0.983957219251337,
+        "support": 92.0
+    },
+    "clubbing": {
+        "precision": 0.9739130434782609,
+        "recall": 0.9491525423728814,
+        "f1-score": 0.9613733905579399,
+        "support": 118.0
+    },
+    "pitting": {
+        "precision": 0.9693877551020408,
+        "recall": 0.9693877551020408,
+        "f1-score": 0.9693877551020408,
+        "support": 98.0
+    },
+    "accuracy": 0.9756944444444444,
+    "macro avg": {
+        "precision": 0.9778896837486969,
+        "recall": 0.9785382002485433,
+        "f1-score": 0.9780823433122512,
+        "support": 576.0
+    },
+    "weighted avg": {
+        "precision": 0.9758510786078214,
+        "recall": 0.9756944444444444,
+        "f1-score": 0.9756289756645996,
+        "support": 576.0
+    }
+}

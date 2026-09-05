@@ -1,0 +1,135 @@
+======================================================================
+FINAL EXPERIMENTAL RESULTS SUMMARY
+======================================================================
+
+1. TEST DATASET
+----------------------------------------------------------------------
+Total Test Images: 576
+Number of Classes: 6
+Classes: Acral_Lentiginous_Melanoma, Healthy_Nail, Onychogryphosis, blue_finger, clubbing, pitting
+
+2. OVERALL MODEL PERFORMANCE
+----------------------------------------------------------------------
+
+Model: EfficientNet-B0
+Accuracy: 98.4375%
+Macro Precision: 98.5414%
+Macro Recall: 98.2159%
+Macro F1-Score: 98.3649%
+MCC: 98.1086%
+Inference Time: 2.1379 ms/image
+Parameters: 4.0152 million
+
+Model: ConvNeXtV2-Tiny
+Accuracy: 98.2639%
+Macro Precision: 98.4515%
+Macro Recall: 98.0428%
+Macro F1-Score: 98.2286%
+MCC: 97.9004%
+Inference Time: 7.8818 ms/image
+Parameters: 27.8711 million
+
+Model: Proposed Attention-EfficientNet-B0
+Accuracy: 98.0903%
+Macro Precision: 98.2240%
+Macro Recall: 97.9062%
+Macro F1-Score: 98.0559%
+MCC: 97.6852%
+Inference Time: 3.5097 ms/image
+Parameters: 4.2226 million
+
+Model: DenseNet121
+Accuracy: 97.5694%
+Macro Precision: 97.7890%
+Macro Recall: 97.8538%
+Macro F1-Score: 97.8082%
+MCC: 97.0595%
+Inference Time: 4.0659 ms/image
+Parameters: 6.9600 million
+
+3. BEST OVERALL MODELS
+----------------------------------------------------------------------
+Highest Accuracy: EfficientNet-B0 (98.4375%)
+Highest Macro F1-Score: EfficientNet-B0 (98.3649%)
+Fastest Inference: EfficientNet-B0 (2.1379 ms/image)
+Smallest Model: EfficientNet-B0 (4.0152 million parameters)
+
+4. EFFICIENTNET-B0 VS PROPOSED MODEL
+----------------------------------------------------------------------
+EfficientNet-B0 Accuracy: 98.4375%
+Proposed Model Accuracy: 98.0903%
+Accuracy Difference: 0.3472 percentage points
+
+EfficientNet-B0 Macro F1: 98.3649%
+Proposed Model Macro F1: 98.0559%
+Macro F1 Difference: 0.3090 percentage points
+
+EfficientNet-B0 Inference Time: 2.1379 ms/image
+Proposed Model Inference Time: 3.5097 ms/image
+Inference Time Difference: 1.3718 ms/image
+
+EfficientNet-B0 Parameters: 4.0152 million
+Proposed Model Parameters: 4.2226 million
+Additional Parameters in Proposed Model: 0.2074 million
+
+5. STATISTICAL MODEL COMPARISON
+----------------------------------------------------------------------
+McNemar's Test P-Value: 0.687500
+Significance Level: 0.05
+Result: Not Statistically Significant
+Interpretation: The difference between EfficientNet-B0 and the proposed model is not statistically significant.
+
+6. PREDICTION-LEVEL COMPARISON
+----------------------------------------------------------------------
+Total Test Images: 576
+Both Models Correct: 563
+Both Models Incorrect: 7
+Only EfficientNet-B0 Correct: 4
+Only Proposed Model Correct: 2
+
+7. CLASS-WISE PERFORMANCE
+----------------------------------------------------------------------
+Classes where EfficientNet-B0 performed better: 4
+Classes where Proposed Model performed better: 1
+Classes with equal performance: 1
+
+Classes where the Proposed Model achieved higher F1-score:
+ - pitting
+
+8. MODEL CALIBRATION
+----------------------------------------------------------------------
+EfficientNet-B0: ECE = 0.065050, Brier Score = 0.004695
+Proposed Attention-EfficientNet-B0: ECE = 0.008949, Brier Score = 0.004805
+
+Best ECE Calibration: Proposed Attention-EfficientNet-B0 (ECE = 0.008949)
+Lower ECE indicates better alignment between model confidence and observed accuracy.
+
+9. PREDICTION CONFIDENCE
+----------------------------------------------------------------------
+EfficientNet-B0 Average Confidence: 92.23%
+EfficientNet-B0 Incorrect Prediction Confidence: 59.19%
+
+Proposed Model Average Confidence: 98.92%
+Proposed Model Incorrect Prediction Confidence: 78.73%
+
+10. HIGH-CONFIDENCE ERROR ANALYSIS
+----------------------------------------------------------------------
+EfficientNet-B0 Errors >= 90% Confidence: 0
+Proposed Model Errors >= 90% Confidence: 5
+The proposed model produced a higher number of highly confident incorrect predictions.
+
+11. FINAL SCIENTIFIC INTERPRETATION
+----------------------------------------------------------------------
+EfficientNet-B0 achieved the highest overall classification accuracy, Macro F1-score, MCC, and fastest inference time among the evaluated models.
+
+The proposed Attention-EfficientNet-B0 achieved comparable performance, with an accuracy difference of only 0.3472 percentage points relative to EfficientNet-B0.
+
+McNemar's statistical test indicated that the performance difference between EfficientNet-B0 and the proposed model was not statistically significant.
+
+The proposed model demonstrated substantially better Expected Calibration Error than EfficientNet-B0, suggesting improved overall confidence calibration.
+
+However, the proposed model also generated more high-confidence misclassifications, indicating that improved aggregate calibration does not eliminate individual overconfident errors.
+
+Overall, EfficientNet-B0 provides the strongest combination of classification performance and computational efficiency in the present experiment, while the proposed model demonstrates comparable classification performance and improved ECE calibration.
+
+======================================================================

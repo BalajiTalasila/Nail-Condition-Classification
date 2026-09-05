@@ -75,3 +75,50 @@ results/models/*.pth
 build/
 dist/
 *.egg-info/
+# ============================================================
+# NESTED / DUPLICATE REPOSITORIES
+# ============================================================
+
+Nail-Condition-Classification/
+
+
+# ============================================================
+# LARGE ARCHIVES
+# ============================================================
+
+*.zip
+
+
+# ============================================================
+# TEMPORARY DEBUG AND DIAGNOSTIC SCRIPTS
+# ============================================================
+
+add_safe_numeric_helper.py
+diagnose_publication_ready_error.py
+find_71_image_proposed_files.py
+fix_publication_ready_error.py
+fix_unseen_calibration_paths.py
+fix_unseen_calibration_paths_v2.py
+fix_unseen_correct_column.py
+inspect_all_71_image_files.py
+inspect_proposed_prediction_files.py
+verify_unseen_prediction_files.py
+
+
+# ============================================================
+# BACKUP SOURCE FILES
+# ============================================================
+
+src/*_backup.py
+src/*_before_*.py
+
+
+# ============================================================
+# PYTHON CACHE
+# ============================================================
+
+__pycache__/
+*.pyc
+
+# Unseen-source evaluation images
+data/evaluation/unseen_source_test/

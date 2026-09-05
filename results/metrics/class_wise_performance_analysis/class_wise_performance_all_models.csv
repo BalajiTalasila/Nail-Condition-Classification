@@ -1,0 +1,25 @@
+model,model_display,class,support,correct_predictions,incorrect_predictions,class_accuracy,class_accuracy_percent,precision,precision_percent,recall,recall_percent,f1_score,f1_score_percent
+convnextv2_tiny,ConvNeXtV2-Tiny,Acral_Lentiginous_Melanoma,9,9,0,1.0,100.0,0.9,90.0,1.0,100.0,0.9473684210526315,94.73684210526315
+convnextv2_tiny,ConvNeXtV2-Tiny,Healthy_Nail,13,13,0,1.0,100.0,1.0,100.0,1.0,100.0,1.0,100.0
+convnextv2_tiny,ConvNeXtV2-Tiny,Onychogryphosis,4,2,2,0.5,50.0,1.0,100.0,0.5,50.0,0.6666666666666666,66.66666666666666
+convnextv2_tiny,ConvNeXtV2-Tiny,blue_finger,7,7,0,1.0,100.0,1.0,100.0,1.0,100.0,1.0,100.0
+convnextv2_tiny,ConvNeXtV2-Tiny,clubbing,24,24,0,1.0,100.0,0.96,96.0,1.0,100.0,0.9795918367346939,97.95918367346938
+convnextv2_tiny,ConvNeXtV2-Tiny,pitting,14,12,2,0.8571428571428571,85.71428571428571,0.8571428571428571,85.71428571428571,0.8571428571428571,85.71428571428571,0.8571428571428571,85.71428571428571
+densenet121,DenseNet121,Acral_Lentiginous_Melanoma,9,9,0,1.0,100.0,0.8181818181818182,81.81818181818183,1.0,100.0,0.9,90.0
+densenet121,DenseNet121,Healthy_Nail,13,13,0,1.0,100.0,1.0,100.0,1.0,100.0,1.0,100.0
+densenet121,DenseNet121,Onychogryphosis,4,3,1,0.75,75.0,1.0,100.0,0.75,75.0,0.8571428571428571,85.71428571428571
+densenet121,DenseNet121,blue_finger,7,7,0,1.0,100.0,1.0,100.0,1.0,100.0,1.0,100.0
+densenet121,DenseNet121,clubbing,24,24,0,1.0,100.0,0.96,96.0,1.0,100.0,0.9795918367346939,97.95918367346938
+densenet121,DenseNet121,pitting,14,12,2,0.8571428571428571,85.71428571428571,1.0,100.0,0.8571428571428571,85.71428571428571,0.9230769230769231,92.3076923076923
+efficientnet_b0,EfficientNet-B0,Acral_Lentiginous_Melanoma,9,9,0,1.0,100.0,1.0,100.0,1.0,100.0,1.0,100.0
+efficientnet_b0,EfficientNet-B0,Healthy_Nail,13,13,0,1.0,100.0,1.0,100.0,1.0,100.0,1.0,100.0
+efficientnet_b0,EfficientNet-B0,Onychogryphosis,4,2,2,0.5,50.0,1.0,100.0,0.5,50.0,0.6666666666666666,66.66666666666666
+efficientnet_b0,EfficientNet-B0,blue_finger,7,7,0,1.0,100.0,0.7777777777777778,77.77777777777779,1.0,100.0,0.875,87.5
+efficientnet_b0,EfficientNet-B0,clubbing,24,23,1,0.9583333333333334,95.83333333333334,0.92,92.0,0.9583333333333334,95.83333333333334,0.9387755102040817,93.87755102040816
+efficientnet_b0,EfficientNet-B0,pitting,14,12,2,0.8571428571428571,85.71428571428571,0.9230769230769231,92.3076923076923,0.8571428571428571,85.71428571428571,0.8888888888888888,88.88888888888889
+proposed_attention_efficientnet_b0,Proposed Attention EfficientNet-B0,Acral_Lentiginous_Melanoma,9,9,0,1.0,100.0,0.8181818181818182,81.81818181818183,1.0,100.0,0.9,90.0
+proposed_attention_efficientnet_b0,Proposed Attention EfficientNet-B0,Healthy_Nail,13,13,0,1.0,100.0,1.0,100.0,1.0,100.0,1.0,100.0
+proposed_attention_efficientnet_b0,Proposed Attention EfficientNet-B0,Onychogryphosis,4,3,1,0.75,75.0,1.0,100.0,0.75,75.0,0.8571428571428571,85.71428571428571
+proposed_attention_efficientnet_b0,Proposed Attention EfficientNet-B0,blue_finger,7,7,0,1.0,100.0,1.0,100.0,1.0,100.0,1.0,100.0
+proposed_attention_efficientnet_b0,Proposed Attention EfficientNet-B0,clubbing,24,24,0,1.0,100.0,0.96,96.0,1.0,100.0,0.9795918367346939,97.95918367346938
+proposed_attention_efficientnet_b0,Proposed Attention EfficientNet-B0,pitting,14,12,2,0.8571428571428571,85.71428571428571,1.0,100.0,0.8571428571428571,85.71428571428571,0.9230769230769231,92.3076923076923

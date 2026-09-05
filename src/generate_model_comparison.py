@@ -1,4 +1,4 @@
-import os
+﻿import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
@@ -43,7 +43,10 @@ MODELS = {
         "densenet121_test_metrics.csv",
 
     "EfficientNet-B0":
-        "efficientnet_b0_test_metrics.csv"
+        "efficientnet_b0_test_metrics.csv",
+
+    "Proposed Attention-EfficientNet-B0":
+        "proposed_model_final_test_metrics.csv"
 }
 
 
@@ -86,7 +89,7 @@ def load_model_metrics():
         )
 
         print(
-            f"✓ Loaded metrics for "
+            f"âœ“ Loaded metrics for "
             f"{model_name}"
         )
 
@@ -129,7 +132,7 @@ def save_comparison_table(comparison_df):
     )
 
     print(
-        f"\n✓ Comparison table saved:\n"
+        f"\nâœ“ Comparison table saved:\n"
         f"{output_path}"
     )
 
@@ -200,7 +203,7 @@ def generate_accuracy_comparison(df):
     plt.close()
 
     print(
-        f"✓ Accuracy comparison saved:\n"
+        f"âœ“ Accuracy comparison saved:\n"
         f"{output_path}"
     )
 
@@ -269,7 +272,7 @@ def generate_f1_comparison(df):
     plt.close()
 
     print(
-        f"✓ F1 comparison saved:\n"
+        f"âœ“ F1 comparison saved:\n"
         f"{output_path}"
     )
 
@@ -338,7 +341,7 @@ def generate_mcc_comparison(df):
     plt.close()
 
     print(
-        f"✓ MCC comparison saved:\n"
+        f"âœ“ MCC comparison saved:\n"
         f"{output_path}"
     )
 
@@ -402,7 +405,7 @@ def generate_inference_time_comparison(df):
     plt.close()
 
     print(
-        f"✓ Inference time comparison saved:\n"
+        f"âœ“ Inference time comparison saved:\n"
         f"{output_path}"
     )
 
@@ -494,7 +497,7 @@ def generate_combined_comparison(df):
     plt.close()
 
     print(
-        f"✓ Overall comparison saved:\n"
+        f"âœ“ Overall comparison saved:\n"
         f"{output_path}"
     )
 

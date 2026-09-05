@@ -1,0 +1,12 @@
+                            precision    recall  f1-score   support
+
+Acral_Lentiginous_Melanoma     0.9823    0.9823    0.9823       113
+              Healthy_Nail     1.0000    0.9608    0.9800        51
+           Onychogryphosis     0.9810    0.9904    0.9856       104
+               blue_finger     0.9574    0.9783    0.9677        92
+                  clubbing     0.9831    0.9831    0.9831       118
+                   pitting     0.9897    0.9796    0.9846        98
+
+                  accuracy                         0.9809       576
+                 macro avg     0.9822    0.9791    0.9806       576
+              weighted avg     0.9811    0.9809    0.9809       576

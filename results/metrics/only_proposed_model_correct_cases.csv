@@ -1,0 +1,3 @@
+Image_Path,True_Label,EfficientNet_B0_Prediction,Proposed_Model_Prediction,EfficientNet_B0_Correct,Proposed_Model_Correct,Comparison_Outcome
+data/processed/test/Onychogryphosis/Screenshot-2021-11-19-020122_png.rf.f6e29d323eae406d6256206434056988.jpg,Onychogryphosis,pitting,Onychogryphosis,False,True,Only Proposed Model Correct
+data/processed/test/clubbing/Screen-Shot-2021-11-22-at-9-24-45-AM_png.rf.0cf23ca344639d3e905649630b60fee6.jpg,clubbing,blue_finger,clubbing,False,True,Only Proposed Model Correct

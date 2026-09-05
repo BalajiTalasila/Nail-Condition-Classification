@@ -1,0 +1,8 @@
+STUDY LIMITATIONS
+================================================================================
+
+1. The unseen-source test set contained a relatively small number of images, which limits statistical power.
+2. The absence of statistically significant differences does not necessarily indicate that all models have identical performance; larger independent test sets would provide greater statistical sensitivity.
+3. The evaluation was performed on the available unseen-source dataset, and additional external datasets would strengthen conclusions regarding generalisation.
+4. Model ranking was based on a weighted decision framework. Although the weighting prioritised classification performance, alternative weighting strategies could produce different overall rankings.
+5. Confidence calibration was assessed using ECE, MCE, and Brier Score, and these metrics may emphasise different characteristics of probabilistic predictions.

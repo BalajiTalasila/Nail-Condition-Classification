@@ -1,0 +1,96 @@
+DETAILED MISCLASSIFICATION PATTERN ANALYSIS
+======================================================================
+
+Total Test Images: 576
+
+======================================================================
+EFFICIENTNET-B0 MISCLASSIFICATION ANALYSIS
+======================================================================
+
+Total Misclassifications: 9
+
+MISCLASSIFICATION TRANSITIONS
+----------------------------------------------------------------------
+True: Acral_Lentiginous_Melanoma → Predicted: blue_finger | Count: 1
+True: Healthy_Nail → Predicted: blue_finger | Count: 1
+True: Healthy_Nail → Predicted: clubbing | Count: 1
+True: Onychogryphosis → Predicted: clubbing | Count: 1
+True: Onychogryphosis → Predicted: pitting | Count: 1
+True: blue_finger → Predicted: pitting | Count: 1
+True: clubbing → Predicted: blue_finger | Count: 1
+True: pitting → Predicted: blue_finger | Count: 1
+True: pitting → Predicted: clubbing | Count: 1
+
+ERRORS BY TRUE CLASS
+----------------------------------------------------------------------
+Healthy_Nail: 2
+Onychogryphosis: 2
+pitting: 2
+Acral_Lentiginous_Melanoma: 1
+blue_finger: 1
+clubbing: 1
+
+Most Common Confusion: Acral_Lentiginous_Melanoma → blue_finger (1 image(s))
+
+======================================================================
+PROPOSED ATTENTION-EFFICIENTNET-B0 MISCLASSIFICATION ANALYSIS
+======================================================================
+
+Total Misclassifications: 11
+
+MISCLASSIFICATION TRANSITIONS
+----------------------------------------------------------------------
+True: Healthy_Nail → Predicted: blue_finger | Count: 2
+True: pitting → Predicted: Acral_Lentiginous_Melanoma | Count: 2
+True: Acral_Lentiginous_Melanoma → Predicted: blue_finger | Count: 1
+True: Onychogryphosis → Predicted: clubbing | Count: 1
+True: Acral_Lentiginous_Melanoma → Predicted: clubbing | Count: 1
+True: blue_finger → Predicted: Onychogryphosis | Count: 1
+True: blue_finger → Predicted: pitting | Count: 1
+True: clubbing → Predicted: Onychogryphosis | Count: 1
+True: clubbing → Predicted: blue_finger | Count: 1
+
+ERRORS BY TRUE CLASS
+----------------------------------------------------------------------
+Acral_Lentiginous_Melanoma: 2
+Healthy_Nail: 2
+blue_finger: 2
+clubbing: 2
+pitting: 2
+Onychogryphosis: 1
+
+Most Common Confusion: Healthy_Nail → blue_finger (2 image(s))
+
+======================================================================
+COMMON MISCLASSIFICATIONS
+======================================================================
+
+Images misclassified by both models: 7
+
+True: Acral_Lentiginous_Melanoma
+EfficientNet-B0: blue_finger
+Proposed Model: blue_finger
+
+True: Healthy_Nail
+EfficientNet-B0: clubbing
+Proposed Model: blue_finger
+
+True: Healthy_Nail
+EfficientNet-B0: blue_finger
+Proposed Model: blue_finger
+
+True: Onychogryphosis
+EfficientNet-B0: clubbing
+Proposed Model: clubbing
+
+True: blue_finger
+EfficientNet-B0: pitting
+Proposed Model: pitting
+
+True: pitting
+EfficientNet-B0: clubbing
+Proposed Model: Acral_Lentiginous_Melanoma
+
+True: pitting
+EfficientNet-B0: blue_finger
+Proposed Model: Acral_Lentiginous_Melanoma

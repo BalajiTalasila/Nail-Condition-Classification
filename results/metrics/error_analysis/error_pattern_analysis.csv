@@ -1,0 +1,13 @@
+true_class,predicted_class,count,model
+Onychogryphosis,pitting,2,ConvNeXtV2-Tiny
+pitting,Acral_Lentiginous_Melanoma,1,ConvNeXtV2-Tiny
+pitting,clubbing,1,ConvNeXtV2-Tiny
+Onychogryphosis,clubbing,1,DenseNet121
+pitting,Acral_Lentiginous_Melanoma,2,DenseNet121
+Onychogryphosis,clubbing,1,EfficientNet-B0
+Onychogryphosis,pitting,1,EfficientNet-B0
+clubbing,blue_finger,1,EfficientNet-B0
+pitting,blue_finger,1,EfficientNet-B0
+pitting,clubbing,1,EfficientNet-B0
+Onychogryphosis,clubbing,1,Proposed Attention EfficientNet-B0
+pitting,Acral_Lentiginous_Melanoma,2,Proposed Attention EfficientNet-B0

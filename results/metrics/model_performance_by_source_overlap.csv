@@ -1,0 +1,5 @@
+model,total_test_images,matched_images,unmatched_prediction_paths,overlapping_source_images,unseen_source_images,overall_accuracy_percent,overlapping_source_accuracy_percent,unseen_source_accuracy_percent,accuracy_gap_percentage_points
+densenet121,576,576,0,505,71,97.56944444444444,97.82178217821782,95.77464788732394,2.0471342908938794
+proposed_attention_efficientnet_b0,576,576,0,505,71,98.09027777777779,98.41584158415841,95.77464788732394,2.6411936968344776
+convnextv2_tiny,576,576,0,505,71,98.26388888888889,98.8118811881188,94.36619718309859,4.445684005020212
+efficientnet_b0,576,576,0,505,71,98.4375,99.20792079207921,92.95774647887323,6.250174313205974

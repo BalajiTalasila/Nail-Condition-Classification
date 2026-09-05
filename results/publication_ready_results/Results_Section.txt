@@ -1,0 +1,41 @@
+RESULTS
+
+================================================================================
+
+
+
+Unseen-Source Evaluation
+
+All four models were evaluated on the same unseen-source test set containing 71 images. Performance was assessed using accuracy, macro-averaged precision, macro-averaged recall, macro F1-score, weighted F1-score, and confidence calibration metrics.
+
+
+
+Classification Performance
+
+The proposed Attention EfficientNet-B0 achieved an accuracy of 95.77% and a macro F1-score of 94.33% on the unseen-source test set.
+
+DenseNet121 achieved identical observed accuracy and macro F1-score on this evaluation set, while ConvNeXtV2-Tiny and EfficientNet-B0 produced lower observed classification performance.
+
+
+
+Confidence Calibration
+
+The proposed Attention EfficientNet-B0 achieved an Expected Calibration Error (ECE) of 3.82% and a Brier Score of 0.0356.
+
+Among the evaluated models, the proposed model achieved the lowest ECE, indicating the strongest agreement between predicted confidence and observed classification correctness according to this metric.
+
+
+
+Overall Model Ranking
+
+Using a weighted ranking framework that prioritised classification accuracy and macro F1-score while also considering ECE and Brier Score, Proposed Attention EfficientNet-B0 obtained the highest overall rank.
+
+
+
+Statistical Significance
+
+Pairwise McNemar testing was performed across 6 model comparisons.
+
+No statistically significant differences in classification accuracy were identified among the evaluated models on the unseen-source test set.
+
+Therefore, the observed differences in model accuracy should not be interpreted as statistically significant superiority.

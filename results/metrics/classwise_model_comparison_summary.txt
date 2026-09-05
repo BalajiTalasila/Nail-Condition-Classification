@@ -1,0 +1,75 @@
+CLASS-WISE MODEL PERFORMANCE COMPARISON
+======================================================================
+
+Class: Acral_Lentiginous_Melanoma
+Support: 113
+EfficientNet-B0 Precision: 100.00%
+Proposed Model Precision: 98.23%
+EfficientNet-B0 Recall: 99.12%
+Proposed Model Recall: 98.23%
+EfficientNet-B0 F1: 99.56%
+Proposed Model F1: 98.23%
+F1 Difference: -1.33%
+Better Model: EfficientNet-B0
+--------------------------------------------------
+Class: Healthy_Nail
+Support: 51
+EfficientNet-B0 Precision: 100.00%
+Proposed Model Precision: 100.00%
+EfficientNet-B0 Recall: 96.08%
+Proposed Model Recall: 96.08%
+EfficientNet-B0 F1: 98.00%
+Proposed Model F1: 98.00%
+F1 Difference: +0.00%
+Better Model: Equal
+--------------------------------------------------
+Class: Onychogryphosis
+Support: 104
+EfficientNet-B0 Precision: 100.00%
+Proposed Model Precision: 98.10%
+EfficientNet-B0 Recall: 98.08%
+Proposed Model Recall: 99.04%
+EfficientNet-B0 F1: 99.03%
+Proposed Model F1: 98.56%
+F1 Difference: -0.46%
+Better Model: EfficientNet-B0
+--------------------------------------------------
+Class: blue_finger
+Support: 92
+EfficientNet-B0 Precision: 95.79%
+Proposed Model Precision: 95.74%
+EfficientNet-B0 Recall: 98.91%
+Proposed Model Recall: 97.83%
+EfficientNet-B0 F1: 97.33%
+Proposed Model F1: 96.77%
+F1 Difference: -0.55%
+Better Model: EfficientNet-B0
+--------------------------------------------------
+Class: clubbing
+Support: 118
+EfficientNet-B0 Precision: 97.50%
+Proposed Model Precision: 98.31%
+EfficientNet-B0 Recall: 99.15%
+Proposed Model Recall: 98.31%
+EfficientNet-B0 F1: 98.32%
+Proposed Model F1: 98.31%
+F1 Difference: -0.01%
+Better Model: EfficientNet-B0
+--------------------------------------------------
+Class: pitting
+Support: 98
+EfficientNet-B0 Precision: 97.96%
+Proposed Model Precision: 98.97%
+EfficientNet-B0 Recall: 97.96%
+Proposed Model Recall: 97.96%
+EfficientNet-B0 F1: 97.96%
+Proposed Model F1: 98.46%
+F1 Difference: +0.50%
+Better Model: Proposed Model
+--------------------------------------------------
+
+OVERALL SUMMARY
+--------------------------------------------------
+Proposed Model Better: 1 classes
+EfficientNet-B0 Better: 4 classes
+Equal Performance: 1 classes

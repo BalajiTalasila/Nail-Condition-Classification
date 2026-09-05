@@ -1,0 +1,7 @@
+class,total_test_images,overlapping_images,unseen_images,overlap_percentage
+Acral_Lentiginous_Melanoma,113,104,9,92.03539823008849
+Healthy_Nail,51,38,13,74.50980392156863
+Onychogryphosis,104,100,4,96.15384615384616
+blue_finger,92,85,7,92.3913043478261
+clubbing,118,94,24,79.66101694915254
+pitting,98,84,14,85.71428571428571

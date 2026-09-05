@@ -1,0 +1,65 @@
+======================================================================
+MODEL PERFORMANCE AND COMPLEXITY ANALYSIS
+======================================================================
+
+OVERALL MODEL PERFORMANCE
+----------------------------------------------------------------------
+1. EfficientNet-B0 | Accuracy: 98.4375% | Macro F1: 98.3649% | MCC: 0.9811
+2. ConvNeXtV2-Tiny | Accuracy: 98.2639% | Macro F1: 98.2286% | MCC: 0.9790
+3. Proposed Attention-EfficientNet-B0 | Accuracy: 98.0903% | Macro F1: 98.0559% | MCC: 0.9769
+4. DenseNet121 | Accuracy: 97.5694% | Macro F1: 97.8082% | MCC: 0.9706
+
+ACCURACY RANKING
+----------------------------------------------------------------------
+1. EfficientNet-B0 - 98.4375%
+2. ConvNeXtV2-Tiny - 98.2639%
+3. Proposed Attention-EfficientNet-B0 - 98.0903%
+4. DenseNet121 - 97.5694%
+
+INFERENCE SPEED RANKING
+----------------------------------------------------------------------
+1. EfficientNet-B0 - 2.1379 ms/image
+2. Proposed Attention-EfficientNet-B0 - 3.5097 ms/image
+3. DenseNet121 - 4.0659 ms/image
+4. ConvNeXtV2-Tiny - 7.8818 ms/image
+
+MODEL COMPLEXITY RANKING
+----------------------------------------------------------------------
+1. EfficientNet-B0 - 4.0152 million parameters
+2. Proposed Attention-EfficientNet-B0 - 4.2226 million parameters
+3. DenseNet121 - 6.9600 million parameters
+4. ConvNeXtV2-Tiny - 27.8711 million parameters
+
+PARAMETER EFFICIENCY RANKING
+----------------------------------------------------------------------
+1. EfficientNet-B0 - 24.5160 accuracy percentage per million parameters
+2. Proposed Attention-EfficientNet-B0 - 23.2299 accuracy percentage per million parameters
+3. DenseNet121 - 14.0186 accuracy percentage per million parameters
+4. ConvNeXtV2-Tiny - 3.5257 accuracy percentage per million parameters
+
+MODEL HIGHLIGHTS
+----------------------------------------------------------------------
+Best Accuracy: EfficientNet-B0 (98.4375%)
+Fastest Model: EfficientNet-B0 (2.1379 ms/image)
+Smallest Model: EfficientNet-B0 (4.0152 million parameters)
+Highest Parameter Efficiency: EfficientNet-B0 (24.5160)
+
+PROPOSED MODEL PERFORMANCE
+----------------------------------------------------------------------
+Accuracy: 98.0903%
+Macro F1-Score: 98.0559%
+MCC: 0.9769
+Inference Time: 3.5097 ms/image
+Parameters: 4.2226 million
+Model Size: 16.2783 MB
+Parameter Efficiency: 23.2299
+
+PROPOSED MODEL VS BASE EFFICIENTNET-B0
+----------------------------------------------------------------------
+Accuracy Difference: -0.3472 percentage points
+Inference Time Difference: 1.3718 ms/image
+Parameter Difference: 0.2074 million parameters
+
+======================================================================
+END OF MODEL RESULTS SUMMARY
+======================================================================

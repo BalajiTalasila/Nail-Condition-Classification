@@ -1,0 +1,50 @@
+======================================================================
+DATASET SPLIT INTEGRITY REPORT
+======================================================================
+
+Total images: 3835
+Number of classes: 6
+
+SPLIT COUNTS
+----------------------------------------------------------------------
+test: 576
+train: 2684
+val: 575
+
+CLASS DISTRIBUTION
+----------------------------------------------------------------------
+split                       train  val  test  total  imbalance_ratio
+class                                                               
+Acral_Lentiginous_Melanoma    527  113   113    753         2.195335
+Healthy_Nail                  240   52    51    343         1.000000
+Onychogryphosis               482  103   104    689         2.008746
+blue_finger                   428   92    92    612         1.784257
+clubbing                      548  117   118    783         2.282799
+pitting                       459   98    98    655         1.909621
+
+DATASET IMBALANCE
+----------------------------------------------------------------------
+Largest class: clubbing (783 images)
+Smallest class: Healthy_Nail (343 images)
+Imbalance ratio: 2.2828
+
+EXACT DUPLICATE CHECK
+----------------------------------------------------------------------
+Cross-split duplicate records: 0
+
+FILENAME OVERLAP CHECK
+----------------------------------------------------------------------
+Filename overlaps: 0
+
+ORIGINAL SOURCE FOLDER ANALYSIS
+----------------------------------------------------------------------
+train: 3744
+validation: 91
+test: 0
+unknown: 0
+
+FINAL STATUS
+----------------------------------------------------------------------
+PASSED: No exact cross-split duplicate leakage was detected.
+
+======================================================================

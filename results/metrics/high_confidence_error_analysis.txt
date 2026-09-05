@@ -1,0 +1,36 @@
+======================================================================
+HIGH-CONFIDENCE ERROR ANALYSIS
+======================================================================
+
+EFFICIENTNET-B0
+----------------------------------------------------------------------
+Total Misclassifications: 9
+Average Error Confidence: 59.19%
+Highest Error Confidence: 85.80%
+Lowest Error Confidence: 38.24%
+Errors >= 90% confidence: 0
+
+TOP CONFIDENT ERRORS
+True: Acral_Lentiginous_Melanoma | Predicted: blue_finger | Confidence: 85.80%
+True: Healthy_Nail | Predicted: clubbing | Confidence: 81.18%
+True: blue_finger | Predicted: pitting | Confidence: 70.37%
+True: Onychogryphosis | Predicted: pitting | Confidence: 59.73%
+True: Healthy_Nail | Predicted: blue_finger | Confidence: 57.65%
+
+
+PROPOSED ATTENTION-EFFICIENTNET-B0
+----------------------------------------------------------------------
+Total Misclassifications: 11
+Average Error Confidence: 78.73%
+Highest Error Confidence: 98.37%
+Lowest Error Confidence: 50.13%
+Errors >= 90% confidence: 5
+
+TOP CONFIDENT ERRORS
+True: clubbing | Predicted: blue_finger | Confidence: 98.37%
+True: Onychogryphosis | Predicted: clubbing | Confidence: 96.24%
+True: blue_finger | Predicted: pitting | Confidence: 94.78%
+True: pitting | Predicted: Acral_Lentiginous_Melanoma | Confidence: 93.93%
+True: Healthy_Nail | Predicted: blue_finger | Confidence: 91.84%
+
+

@@ -1,0 +1,5 @@
+Rank,Model,Average Confidence (%),Confidence-Accuracy Gap (%),ECE (%),MCE (%),Brier Score,High-Confidence Errors,Calibration Behavior
+1,Proposed Attention EfficientNet-B0,96.95,1.18,3.82,29.01,0.0356,2,Well calibrated
+2,DenseNet121,90.3,-5.47,6.31,42.53,0.0426,2,Underconfident
+3,ConvNeXtV2-Tiny,92.98,-1.39,5.47,69.45,0.0255,1,Well calibrated
+4,EfficientNet-B0,89.0,-3.96,10.66,59.75,0.0258,0,Underconfident

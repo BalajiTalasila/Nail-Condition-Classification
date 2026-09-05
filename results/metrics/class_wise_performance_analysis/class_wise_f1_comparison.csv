@@ -1,0 +1,7 @@
+class,ConvNeXtV2-Tiny,DenseNet121,EfficientNet-B0,Proposed Attention EfficientNet-B0
+Acral_Lentiginous_Melanoma,94.74,90.0,100.0,90.0
+Healthy_Nail,100.0,100.0,100.0,100.0
+Onychogryphosis,66.67,85.71,66.67,85.71
+blue_finger,100.0,100.0,87.5,100.0
+clubbing,97.96,97.96,93.88,97.96
+pitting,85.71,92.31,88.89,92.31

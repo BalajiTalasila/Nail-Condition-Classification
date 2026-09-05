@@ -1,0 +1,25 @@
+======================================================================
+PREDICTION CONFIDENCE ANALYSIS
+======================================================================
+
+Model: EfficientNet-B0
+Average Confidence: 92.23%
+Correct Prediction Confidence: 92.76%
+Incorrect Prediction Confidence: 59.19%
+Minimum Confidence: 38.24%
+Maximum Confidence: 98.98%
+
+Model: Proposed Attention-EfficientNet-B0
+Average Confidence: 98.92%
+Correct Prediction Confidence: 99.32%
+Incorrect Prediction Confidence: 78.73%
+Minimum Confidence: 50.13%
+Maximum Confidence: 100.00%
+
+======================================================================
+MODEL DISAGREEMENT CONFIDENCE
+======================================================================
+
+Prediction disagreements: 9
+EfficientNet-B0 average confidence during disagreements: 65.61%
+Proposed model average confidence during disagreements: 72.38%
