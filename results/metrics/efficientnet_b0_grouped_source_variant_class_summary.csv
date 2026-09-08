@@ -1,0 +1,7 @@
+true_class,total_sources,average_source_accuracy,average_variants_per_source,sources_with_prediction_variation,majority_vote_correct_sources,source_stability_percent,majority_vote_accuracy_percent
+Acral_Lentiginous_Melanoma,50,95.33333333333334,3.0,6,49,88.0,98.0
+Healthy_Nail,34,95.58823529411765,2.0,3,33,91.17647058823529,97.05882352941177
+Onychogryphosis,46,94.92753623188406,3.0,3,44,93.47826086956522,95.65217391304348
+blue_finger,41,85.36585365853658,3.0,8,36,80.48780487804879,87.8048780487805
+clubbing,52,100.0,3.0,0,52,100.0,100.0
+pitting,44,98.48484848484848,2.977272727272727,2,44,95.45454545454545,100.0

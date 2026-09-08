@@ -1,0 +1,4 @@
+image_path,image_name,true_class,predicted_class,confidence_percent,correct_prediction
+C:\Users\venka\Documents\Project\Nail-Condition-Classification\data\grouped_split\val\blue_finger\Screen-Shot-2021-11-22-at-8-25-04-PM_png.rf.bb52a4eab69fcf78516f8fe9d59f8b64.jpg,Screen-Shot-2021-11-22-at-8-25-04-PM_png.rf.bb52a4eab69fcf78516f8fe9d59f8b64.jpg,blue_finger,clubbing,95.6,False
+C:\Users\venka\Documents\Project\Nail-Condition-Classification\data\grouped_split\val\blue_finger\Screen-Shot-2021-11-22-at-8-25-04-PM_png.rf.3287bc3f582441dd14a219a336e6de86.jpg,Screen-Shot-2021-11-22-at-8-25-04-PM_png.rf.3287bc3f582441dd14a219a336e6de86.jpg,blue_finger,clubbing,91.1,False
+C:\Users\venka\Documents\Project\Nail-Condition-Classification\data\grouped_split\val\blue_finger\Screen-Shot-2021-11-22-at-5-10-07-PM_png.rf.7e7c3891d9a2725b19470d79b43f20e5.jpg,Screen-Shot-2021-11-22-at-5-10-07-PM_png.rf.7e7c3891d9a2725b19470d79b43f20e5.jpg,blue_finger,clubbing,90.5,False

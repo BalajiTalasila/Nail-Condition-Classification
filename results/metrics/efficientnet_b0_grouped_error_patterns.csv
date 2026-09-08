@@ -1,0 +1,14 @@
+true_class,predicted_class,count
+blue_finger,clubbing,15
+Onychogryphosis,Acral_Lentiginous_Melanoma,5
+Acral_Lentiginous_Melanoma,blue_finger,4
+Acral_Lentiginous_Melanoma,clubbing,2
+blue_finger,Acral_Lentiginous_Melanoma,2
+pitting,blue_finger,2
+Healthy_Nail,clubbing,1
+Acral_Lentiginous_Melanoma,pitting,1
+Healthy_Nail,Acral_Lentiginous_Melanoma,1
+Onychogryphosis,pitting,1
+Onychogryphosis,clubbing,1
+Healthy_Nail,pitting,1
+blue_finger,Healthy_Nail,1
