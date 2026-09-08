@@ -1,0 +1,2 @@
+model_name,dataset_type,random_seed,training_images,validation_images,best_validation_loss,best_validation_accuracy,epochs_completed,training_time_minutes
+efficientnet_b0,leakage_safe_grouped_split,42,3069,766,0.40504309099274577,95.16971279373368,46,27.14895097812017

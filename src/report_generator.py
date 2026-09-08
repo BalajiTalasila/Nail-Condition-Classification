@@ -1,0 +1,292 @@
+﻿from io import BytesIO
+from datetime import datetime
+
+from reportlab.lib.pagesizes import A4
+from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.units import inch
+from reportlab.platypus import (
+    SimpleDocTemplate,
+    Paragraph,
+    Spacer,
+    Table,
+    TableStyle,
+)
+
+
+def generate_prediction_report(
+    image_name,
+    predicted_class,
+    confidence,
+    probabilities,
+    condition_info,
+):
+    buffer = BytesIO()
+
+    document = SimpleDocTemplate(
+        buffer,
+        pagesize=A4,
+        rightMargin=40,
+        leftMargin=40,
+        topMargin=40,
+        bottomMargin=40,
+    )
+
+    styles = getSampleStyleSheet()
+
+    title_style = styles["Title"]
+    heading_style = styles["Heading2"]
+    normal_style = styles["BodyText"]
+
+    elements = []
+
+    elements.append(
+        Paragraph(
+            "Nail Condition AI - Prediction Report",
+            title_style,
+        )
+    )
+
+    elements.append(
+        Spacer(
+            1,
+            20,
+        )
+    )
+
+    elements.append(
+        Paragraph(
+            "Report generated: "
+            + datetime.now().strftime(
+                "%d %B %Y, %I:%M %p"
+            ),
+            normal_style,
+        )
+    )
+
+    elements.append(
+        Spacer(
+            1,
+            20,
+        )
+    )
+
+    elements.append(
+        Paragraph(
+            "Uploaded Image",
+            heading_style,
+        )
+    )
+
+    elements.append(
+        Paragraph(
+            image_name,
+            normal_style,
+        )
+    )
+
+    elements.append(
+        Spacer(
+            1,
+            15,
+        )
+    )
+
+    elements.append(
+        Paragraph(
+            "AI Prediction",
+            heading_style,
+        )
+    )
+
+    prediction_data = [
+        [
+            "Predicted Condition",
+            predicted_class,
+        ],
+        [
+            "Prediction Confidence",
+            f"{confidence:.2f}%",
+        ],
+    ]
+
+    prediction_table = Table(
+        prediction_data,
+        colWidths=[
+            2.5 * inch,
+            3.5 * inch,
+        ],
+    )
+
+    prediction_table.setStyle(
+        TableStyle([
+            (
+                "BACKGROUND",
+                (0, 0),
+                (-1, 0),
+                colors.lightgrey,
+            ),
+            (
+                "GRID",
+                (0, 0),
+                (-1, -1),
+                1,
+                colors.black,
+            ),
+            (
+                "FONTNAME",
+                (0, 0),
+                (-1, -1),
+                "Helvetica",
+            ),
+            (
+                "VALIGN",
+                (0, 0),
+                (-1, -1),
+                "MIDDLE",
+            ),
+            (
+                "PADDING",
+                (0, 0),
+                (-1, -1),
+                8,
+            ),
+        ])
+    )
+
+    elements.append(
+        prediction_table
+    )
+
+    elements.append(
+        Spacer(
+            1,
+            20,
+        )
+    )
+
+    elements.append(
+        Paragraph(
+            "Condition Information",
+            heading_style,
+        )
+    )
+
+    elements.append(
+        Paragraph(
+            condition_info,
+            normal_style,
+        )
+    )
+
+    elements.append(
+        Spacer(
+            1,
+            20,
+        )
+    )
+
+    elements.append(
+        Paragraph(
+            "Class Probabilities",
+            heading_style,
+        )
+    )
+
+    probability_data = [
+        [
+            "Condition",
+            "Probability (%)",
+        ]
+    ]
+
+    sorted_probabilities = sorted(
+        probabilities.items(),
+        key=lambda item: item[1],
+        reverse=True,
+    )
+
+    for class_name, probability in sorted_probabilities:
+
+        probability_data.append(
+            [
+                class_name,
+                f"{probability:.4f}",
+            ]
+        )
+
+    probability_table = Table(
+        probability_data,
+        colWidths=[
+            3.5 * inch,
+            2.5 * inch,
+        ],
+    )
+
+    probability_table.setStyle(
+        TableStyle([
+            (
+                "BACKGROUND",
+                (0, 0),
+                (-1, 0),
+                colors.lightgrey,
+            ),
+            (
+                "GRID",
+                (0, 0),
+                (-1, -1),
+                1,
+                colors.black,
+            ),
+            (
+                "ALIGN",
+                (1, 0),
+                (1, -1),
+                "CENTER",
+            ),
+            (
+                "PADDING",
+                (0, 0),
+                (-1, -1),
+                7,
+            ),
+        ])
+    )
+
+    elements.append(
+        probability_table
+    )
+
+    elements.append(
+        Spacer(
+            1,
+            25,
+        )
+    )
+
+    elements.append(
+        Paragraph(
+            "Disclaimer",
+            heading_style,
+        )
+    )
+
+    elements.append(
+        Paragraph(
+            "This report is generated by an artificial intelligence "
+            "classification model for educational and research purposes "
+            "only. It is not a medical diagnosis and should not replace "
+            "professional medical advice.",
+            normal_style,
+        )
+    )
+
+    document.build(
+        elements
+    )
+
+    buffer.seek(
+        0
+    )
+
+    return buffer.getvalue()

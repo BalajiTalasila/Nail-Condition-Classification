@@ -1,0 +1,7 @@
+class,precision,recall,f1_score,support
+Acral_Lentiginous_Melanoma,1.0,1.0,1.0,18
+Healthy_Nail,1.0,1.0,1.0,20
+Onychogryphosis,1.0,1.0,1.0,12
+blue_finger,1.0,1.0,1.0,9
+clubbing,1.0,1.0,1.0,16
+pitting,1.0,1.0,1.0,16

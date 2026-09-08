@@ -1,0 +1,4 @@
+case_id,image_id,true_class,predicted_class,confidence_percent,analysis_type
+Case_1,448,blue_finger,clubbing,95.60,Very high confidence incorrect prediction
+Case_2,447,blue_finger,clubbing,91.10,Very high confidence incorrect prediction
+Case_3,408,blue_finger,clubbing,90.50,Very high confidence incorrect prediction

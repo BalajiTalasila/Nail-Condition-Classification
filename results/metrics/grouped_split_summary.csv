@@ -1,0 +1,7 @@
+class,total_images,unique_sources,train_images,validation_images,train_percentage,validation_percentage
+Acral_Lentiginous_Melanoma,753,251,603,150,80.08,19.92
+Healthy_Nail,343,172,275,68,80.17,19.83
+Onychogryphosis,689,230,551,138,79.97,20.03
+blue_finger,612,204,489,123,79.9,20.1
+clubbing,783,261,627,156,80.08,19.92
+pitting,655,219,524,131,80.0,20.0

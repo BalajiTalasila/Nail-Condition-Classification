@@ -1,0 +1,4 @@
+figure_case,image_id,true_class,predicted_class,confidence_percent,attention_observation,interpretation
+Case_1,448,blue_finger,clubbing,95.60,Attention concentrated around the nail and surrounding regions,High-confidence systematic misclassification potentially influenced by visual similarity and contextual features
+Case_2,447,blue_finger,clubbing,91.10,Attention distributed around the nail contour and surrounding boundaries,Model may rely on both target-region morphology and contextual image features
+Case_3,408,blue_finger,clubbing,90.50,Attention is relatively diffuse with activation extending beyond the nail,Prediction may be influenced by non-target contextual or image features

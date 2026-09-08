@@ -1,4 +1,4 @@
-# ============================================================
+﻿# ============================================================
 # efficientnet_b0 TRAINING
 # SIX-CLASS NAIL DISEASE CLASSIFICATION
 # ============================================================
@@ -541,7 +541,7 @@ def main():
     print("=" * 70)
 
     set_seed(
-        RANDOM_SEED
+        SEED
     )
 
     print(
@@ -910,7 +910,7 @@ def main():
                 IMAGE_SIZE,
 
                 "random_seed":
-                RANDOM_SEED
+                SEED
             }
 
             checkpoint_path = (
@@ -928,7 +928,7 @@ def main():
             )
 
             print(
-                "\n✓ Best model saved!"
+                "\nBest model saved successfully!"
             )
 
         else:

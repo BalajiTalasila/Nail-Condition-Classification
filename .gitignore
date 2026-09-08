@@ -1,10 +1,9 @@
-# ============================================================
+﻿# ============================================================
 # VIRTUAL ENVIRONMENTS
 # ============================================================
 
 venv/
-env/
-ENV/
+.venv/
 
 
 # ============================================================
@@ -24,10 +23,11 @@ __pycache__/
 
 
 # ============================================================
-# ENVIRONMENT VARIABLES
+# ENVIRONMENT AND SECRETS
 # ============================================================
 
 .env
+.streamlit/secrets.toml
 
 
 # ============================================================
@@ -35,6 +35,7 @@ __pycache__/
 # ============================================================
 
 .vscode/
+.idea/
 
 
 # ============================================================
@@ -46,26 +47,11 @@ Thumbs.db
 
 
 # ============================================================
-# LARGE DATASET FILES
-# ============================================================
-
-data/raw/
-data/processed/
-
-
-# ============================================================
-# LARGE TRAINED MODEL FILES
-# ============================================================
-
-results/models/*.pth
-
-
-# ============================================================
 # TEMPORARY FILES
 # ============================================================
 
-*.tmp
 *.log
+*.tmp
 
 
 # ============================================================
@@ -75,50 +61,53 @@ results/models/*.pth
 build/
 dist/
 *.egg-info/
-# ============================================================
-# NESTED / DUPLICATE REPOSITORIES
-# ============================================================
-
-Nail-Condition-Classification/
 
 
 # ============================================================
-# LARGE ARCHIVES
+# ARCHIVES AND BACKUPS
 # ============================================================
 
-*.zip
-
-
-# ============================================================
-# TEMPORARY DEBUG AND DIAGNOSTIC SCRIPTS
-# ============================================================
-
-add_safe_numeric_helper.py
-diagnose_publication_ready_error.py
-find_71_image_proposed_files.py
-fix_publication_ready_error.py
-fix_unseen_calibration_paths.py
-fix_unseen_calibration_paths_v2.py
-fix_unseen_correct_column.py
-inspect_all_71_image_files.py
-inspect_proposed_prediction_files.py
-verify_unseen_prediction_files.py
+archive/
 
 
 # ============================================================
-# BACKUP SOURCE FILES
+# DATASETS
 # ============================================================
 
-src/*_backup.py
-src/*_before_*.py
+data/processed/
+data/grouped_split/
+data/test_images/
+data/extracted/
 
 
 # ============================================================
-# PYTHON CACHE
+# GENERATED RESULTS
 # ============================================================
 
-__pycache__/
-*.pyc
+results/gradcam_results/
+results/visualizations/
 
-# Unseen-source evaluation images
-data/evaluation/unseen_source_test/
+results/figures/gradcam_grouped_errors/
+results/figures/gradcam_selected_cases/
+results/figures/grouped_error_analysis/
+results/figures/grouped_error_sources/
+results/figures/grouped_gradcam/
+
+
+# ============================================================
+# TEMPORARY GRAD-CAM OUTPUTS
+# ============================================================
+
+results/gradcam_comparison.jpg
+results/gradcam_heatmap.jpg
+results/gradcam_overlay.jpg
+results/gradcam_result.jpg
+
+
+# ============================================================
+# MODEL CHECKPOINTS
+# Ignore all model files except the final application model
+# ============================================================
+
+results/models/*
+!results/models/efficientnet_b0_best.pth

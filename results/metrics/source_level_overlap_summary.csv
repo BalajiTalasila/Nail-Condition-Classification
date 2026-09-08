@@ -1,0 +1,11 @@
+class,dataset,affected_images
+Healthy_Nail,train,4
+Healthy_Nail,validation,4
+Onychogryphosis,train,6
+Onychogryphosis,validation,3
+blue_finger,train,9
+blue_finger,validation,9
+clubbing,train,8
+clubbing,validation,4
+pitting,train,8
+pitting,validation,4

@@ -1,507 +1,1232 @@
-import os
-import time
-import random
+# ============================================================
+# EVALUATION SCRIPT
+# EFFICIENTNET-B0
+# SIX-CLASS NAIL CONDITION CLASSIFICATION
+# ============================================================
+
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 import torch
-import torch.nn as nn
+
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 
 import timm
 
+from tqdm import tqdm
+
 from sklearn.metrics import (
     accuracy_score,
-    precision_recall_fscore_support,
-    confusion_matrix,
     classification_report,
-    matthews_corrcoef,
+    confusion_matrix,
+    precision_recall_fscore_support,
+    precision_score,
+    recall_score,
+    f1_score,
 )
+
 
 # ============================================================
 # CONFIGURATION
 # ============================================================
 
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-TEST_DIR = os.path.join(
-    PROJECT_DIR,
-    "data",
-    "processed",
-    "test"
-)
-
-MODEL_PATH = os.path.join(
-    PROJECT_DIR,
-    "results",
-    "models",
-    "efficientnet_b0_best.pth"
-)
-
-METRICS_DIR = os.path.join(
-    PROJECT_DIR,
-    "results",
-    "metrics"
-)
-
-os.makedirs(METRICS_DIR, exist_ok=True)
+MODEL_NAME = "efficientnet_b0"
 
 IMAGE_SIZE = 224
-BATCH_SIZE = 8
-NUM_CLASSES = 6
-SEED = 42
 
-DEVICE = torch.device(
-    "cuda" if torch.cuda.is_available() else "cpu"
+BATCH_SIZE = 8
+
+NUM_WORKERS = 0
+
+
+# ============================================================
+# PROJECT PATHS
+# ============================================================
+
+PROJECT_DIR = Path(
+    __file__
+).resolve().parent.parent
+
+
+DATA_DIR = (
+    PROJECT_DIR
+    / "data"
+    / "processed"
+)
+
+
+RESULTS_DIR = (
+    PROJECT_DIR
+    / "results"
+)
+
+
+MODELS_DIR = (
+    RESULTS_DIR
+    / "models"
+)
+
+
+METRICS_DIR = (
+    RESULTS_DIR
+    / "metrics"
+)
+
+
+MODEL_PATH = (
+    MODELS_DIR
+    / "efficientnet_b0_best.pth"
+)
+
+
+METRICS_DIR.mkdir(
+    parents=True,
+    exist_ok=True,
 )
 
 
 # ============================================================
-# REPRODUCIBILITY
+# DEVICE
 # ============================================================
 
-def set_seed(seed):
-    random.seed(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-
-    if torch.cuda.is_available():
-        torch.cuda.manual_seed(seed)
-        torch.cuda.manual_seed_all(seed)
-
-
-set_seed(SEED)
+DEVICE = torch.device(
+    "cuda"
+    if torch.cuda.is_available()
+    else "cpu"
+)
 
 
 # ============================================================
-# TEST TRANSFORMATIONS
+# VALIDATION TRANSFORM
 # ============================================================
 
-test_transform = transforms.Compose([
-    transforms.Resize((IMAGE_SIZE, IMAGE_SIZE)),
+validation_transform = transforms.Compose([
+
+    transforms.Resize(
+        (
+            IMAGE_SIZE,
+            IMAGE_SIZE,
+        )
+    ),
+
     transforms.ToTensor(),
 
     transforms.Normalize(
-        mean=[0.485, 0.456, 0.406],
-        std=[0.229, 0.224, 0.225]
-    )
+        mean=[
+            0.485,
+            0.456,
+            0.406,
+        ],
+
+        std=[
+            0.229,
+            0.224,
+            0.225,
+        ],
+    ),
+
 ])
 
 
 # ============================================================
-# MAIN
+# LOAD VALIDATION DATASET
+# ============================================================
+
+def load_validation_dataset():
+
+    validation_dataset = datasets.ImageFolder(
+
+        DATA_DIR / "val",
+
+        transform=validation_transform,
+    )
+
+
+    validation_loader = DataLoader(
+
+        validation_dataset,
+
+        batch_size=BATCH_SIZE,
+
+        shuffle=False,
+
+        num_workers=NUM_WORKERS,
+
+        pin_memory=(
+            DEVICE.type == "cuda"
+        ),
+    )
+
+
+    return (
+
+        validation_dataset,
+
+        validation_loader,
+
+    )
+
+
+# ============================================================
+# LOAD MODEL
+# ============================================================
+
+def load_model():
+
+    print(
+        "\nLoading model checkpoint..."
+    )
+
+
+    checkpoint = torch.load(
+
+        MODEL_PATH,
+
+        map_location=DEVICE,
+    )
+
+
+    class_names = checkpoint[
+        "class_names"
+    ]
+
+
+    model_name = checkpoint[
+        "model_name"
+    ]
+
+
+    model = timm.create_model(
+
+        model_name,
+
+        pretrained=False,
+
+        num_classes=len(
+            class_names
+        ),
+    )
+
+
+    model.load_state_dict(
+
+        checkpoint[
+            "model_state_dict"
+        ]
+    )
+
+
+    model = model.to(
+        DEVICE
+    )
+
+
+    model.eval()
+
+
+    return (
+
+        model,
+
+        checkpoint,
+
+    )
+
+
+# ============================================================
+# EVALUATE MODEL
+# ============================================================
+
+def evaluate_model(
+
+    model,
+
+    data_loader,
+
+):
+
+    predicted_labels = []
+
+    true_labels = []
+
+
+    with torch.no_grad():
+
+        progress_bar = tqdm(
+
+            data_loader,
+
+            desc="Evaluating",
+        )
+
+
+        for images, labels in progress_bar:
+
+
+            images = images.to(
+
+                DEVICE,
+
+                non_blocking=True,
+            )
+
+
+            labels = labels.to(
+
+                DEVICE,
+
+                non_blocking=True,
+            )
+
+
+            with torch.amp.autocast(
+
+                device_type=DEVICE.type,
+
+                enabled=(
+                    DEVICE.type == "cuda"
+                ),
+            ):
+
+
+                outputs = model(
+                    images
+                )
+
+
+            predictions = torch.argmax(
+
+                outputs,
+
+                dim=1,
+            )
+
+
+            predicted_labels.extend(
+
+                predictions.cpu().numpy()
+            )
+
+
+            true_labels.extend(
+
+                labels.cpu().numpy()
+            )
+
+
+    true_labels = np.array(
+        true_labels
+    )
+
+
+    predicted_labels = np.array(
+        predicted_labels
+    )
+
+
+    accuracy = accuracy_score(
+
+        true_labels,
+
+        predicted_labels,
+
+    ) * 100
+
+
+    return (
+
+        true_labels,
+
+        predicted_labels,
+
+        accuracy,
+
+    )
+
+
+# ============================================================
+# SAVE CONFUSION MATRIX VISUALIZATION
+# ============================================================
+
+def save_confusion_matrix_plot(
+
+    cm,
+
+    class_names,
+
+    output_path,
+
+    normalized=False,
+
+):
+
+    plt.figure(
+
+        figsize=(
+            10,
+            8,
+        )
+    )
+
+
+    if normalized:
+
+        cm_display = (
+
+            cm.astype(
+                float
+            )
+
+            /
+
+            cm.sum(
+                axis=1,
+                keepdims=True,
+            )
+        )
+
+
+        cm_display = np.nan_to_num(
+            cm_display
+        )
+
+
+        annotation_format = ".2f"
+
+        title = (
+            "Normalized Confusion Matrix"
+        )
+
+
+    else:
+
+        cm_display = cm
+
+        annotation_format = "d"
+
+        title = (
+            "Confusion Matrix"
+        )
+
+
+    sns.heatmap(
+
+        cm_display,
+
+        annot=True,
+
+        fmt=annotation_format,
+
+        cmap="Blues",
+
+        xticklabels=class_names,
+
+        yticklabels=class_names,
+
+        cbar=True,
+
+    )
+
+
+    plt.title(
+        title
+    )
+
+
+    plt.xlabel(
+        "Predicted Label"
+    )
+
+
+    plt.ylabel(
+        "True Label"
+    )
+
+
+    plt.xticks(
+        rotation=45,
+        ha="right",
+    )
+
+
+    plt.yticks(
+        rotation=0,
+    )
+
+
+    plt.tight_layout()
+
+
+    plt.savefig(
+
+        output_path,
+
+        dpi=300,
+
+        bbox_inches="tight",
+    )
+
+
+    plt.close()
+
+
+# ============================================================
+# MAIN FUNCTION
 # ============================================================
 
 def main():
 
-    print("\n" + "=" * 70)
-    print("efficientnet_b0 TEST EVALUATION")
-    print("=" * 70)
+    print(
+        "\n" + "=" * 70
+    )
 
-    print(f"\nDevice: {DEVICE}")
+
+    print(
+        "EFFICIENTNET-B0 MODEL EVALUATION"
+    )
+
+
+    print(
+        "=" * 70
+    )
+
+
+    # --------------------------------------------------------
+    # DEVICE INFORMATION
+    # --------------------------------------------------------
+
+    print(
+        f"\nDevice: {DEVICE}"
+    )
+
 
     if DEVICE.type == "cuda":
+
         print(
-            f"GPU: "
-            f"{torch.cuda.get_device_name(0)}"
+
+            "GPU: "
+
+            + torch.cuda.get_device_name(
+                0
+            )
         )
 
+
     # --------------------------------------------------------
-    # LOAD TEST DATASET
+    # CHECK MODEL FILE
     # --------------------------------------------------------
 
-    print("\nLoading test dataset...")
+    if not MODEL_PATH.exists():
 
-    test_dataset = datasets.ImageFolder(
-        TEST_DIR,
-        transform=test_transform
+        print(
+            "\nERROR: Model file not found!"
+        )
+
+
+        print(
+            f"Expected location:\n{MODEL_PATH}"
+        )
+
+
+        return
+
+
+    # --------------------------------------------------------
+    # LOAD DATASET
+    # --------------------------------------------------------
+
+    print(
+        "\nLoading validation dataset..."
     )
 
-    test_loader = DataLoader(
-        test_dataset,
-        batch_size=BATCH_SIZE,
-        shuffle=False,
-        num_workers=0,
-        pin_memory=(DEVICE.type == "cuda")
+
+    (
+
+        validation_dataset,
+
+        validation_loader,
+
+    ) = load_validation_dataset()
+
+
+    print(
+
+        f"Validation images: "
+        f"{len(validation_dataset)}"
     )
 
-    class_names = test_dataset.classes
 
-    print(f"\nTest images: {len(test_dataset)}")
-    print(f"Classes: {len(class_names)}")
+    print(
+        "\nDataset class mapping:"
+    )
 
-    print("\nClass mapping:")
 
-    for index, class_name in enumerate(class_names):
-        print(f"{index}: {class_name}")
+    for index, class_name in enumerate(
+
+        validation_dataset.classes
+
+    ):
+
+        print(
+
+            f"{index}: "
+            f"{class_name}"
+        )
+
 
     # --------------------------------------------------------
     # LOAD MODEL
     # --------------------------------------------------------
 
-    print("\nLoading efficientnet_b0 model...")
+    (
 
-    model = timm.create_model(
-        "efficientnet_b0",
-        pretrained=False,
-        num_classes=NUM_CLASSES
+        model,
+
+        checkpoint,
+
+    ) = load_model()
+
+
+    checkpoint_class_names = checkpoint[
+        "class_names"
+    ]
+
+
+    print(
+
+        f"\nModel: "
+        f"{checkpoint['model_name']}"
     )
 
-    model = model.to(DEVICE)
 
-    print("Loading trained weights...")
-
-    checkpoint = torch.load(
-        MODEL_PATH,
-        map_location=DEVICE
+    print(
+        "\nCheckpoint class mapping:"
     )
 
-    # Handles either a direct state_dict or checkpoint dictionary
-    if isinstance(checkpoint, dict) and "model_state_dict" in checkpoint:
-        model.load_state_dict(
-            checkpoint["model_state_dict"]
+
+    for index, class_name in enumerate(
+
+        checkpoint_class_names
+
+    ):
+
+        print(
+
+            f"{index}: "
+            f"{class_name}"
         )
-    else:
-        model.load_state_dict(checkpoint)
 
-    model.eval()
 
     # --------------------------------------------------------
-    # PREDICTIONS
+    # VERIFY CLASS ORDER
     # --------------------------------------------------------
 
-    all_predictions = []
-    all_targets = []
-    all_probabilities = []
+    if (
 
-    total_inference_time = 0.0
-    total_images = 0
+        validation_dataset.classes
+        !=
+        checkpoint_class_names
 
-    print("\nRunning test evaluation...\n")
+    ):
 
-    with torch.no_grad():
-
-        for images, labels in test_loader:
-
-            images = images.to(
-                DEVICE,
-                non_blocking=True
-            )
-
-            labels = labels.to(
-                DEVICE,
-                non_blocking=True
-            )
-
-            # Synchronize before timing GPU inference
-            if DEVICE.type == "cuda":
-                torch.cuda.synchronize()
-
-            start_time = time.perf_counter()
-
-            outputs = model(images)
-
-            if DEVICE.type == "cuda":
-                torch.cuda.synchronize()
-
-            end_time = time.perf_counter()
-
-            inference_time = end_time - start_time
-
-            probabilities = torch.softmax(
-                outputs,
-                dim=1
-            )
-
-            predictions = torch.argmax(
-                probabilities,
-                dim=1
-            )
-
-            total_inference_time += inference_time
-            total_images += images.size(0)
-
-            all_predictions.extend(
-                predictions.cpu().numpy()
-            )
-
-            all_targets.extend(
-                labels.cpu().numpy()
-            )
-
-            all_probabilities.extend(
-                probabilities.cpu().numpy()
-            )
-
-    # --------------------------------------------------------
-    # CONVERT TO NUMPY
-    # --------------------------------------------------------
-
-    all_predictions = np.array(all_predictions)
-    all_targets = np.array(all_targets)
-    all_probabilities = np.array(all_probabilities)
-
-    # --------------------------------------------------------
-    # OVERALL METRICS
-    # --------------------------------------------------------
-
-    accuracy = accuracy_score(
-        all_targets,
-        all_predictions
-    )
-
-    precision_macro, recall_macro, f1_macro, _ = (
-        precision_recall_fscore_support(
-            all_targets,
-            all_predictions,
-            average="macro",
-            zero_division=0
+        print(
+            "\nWARNING: Class order mismatch detected!"
         )
-    )
 
-    precision_weighted, recall_weighted, f1_weighted, _ = (
-        precision_recall_fscore_support(
-            all_targets,
-            all_predictions,
-            average="weighted",
-            zero_division=0
+
+        print(
+            "Dataset class order:"
         )
+
+
+        print(
+            validation_dataset.classes
+        )
+
+
+        print(
+            "\nCheckpoint class order:"
+        )
+
+
+        print(
+            checkpoint_class_names
+        )
+
+
+        print(
+            "\nEvaluation stopped because "
+            "class mappings do not match."
+        )
+
+
+        return
+
+
+    print(
+        "\nClass mapping verification: PASSED"
     )
 
-    mcc = matthews_corrcoef(
-        all_targets,
-        all_predictions
+
+    # --------------------------------------------------------
+    # CHECKPOINT INFORMATION
+    # --------------------------------------------------------
+
+    print(
+
+        f"\nCheckpoint epoch: "
+        f"{checkpoint.get('epoch', 'N/A')}"
     )
+
+
+    if (
+        "validation_loss"
+        in checkpoint
+    ):
+
+        print(
+
+            f"Best validation loss: "
+            f"{checkpoint['validation_loss']:.4f}"
+        )
+
+
+    if (
+        "validation_accuracy"
+        in checkpoint
+    ):
+
+        print(
+
+            f"Validation accuracy "
+            f"at checkpoint: "
+            f"{checkpoint['validation_accuracy']:.2f}%"
+        )
+
+
+    # --------------------------------------------------------
+    # EVALUATE
+    # --------------------------------------------------------
+
+    print(
+        "\nStarting evaluation...\n"
+    )
+
+
+    (
+
+        true_labels,
+
+        predicted_labels,
+
+        accuracy,
+
+    ) = evaluate_model(
+
+        model,
+
+        validation_loader,
+
+    )
+
+
+    # --------------------------------------------------------
+    # RESULTS HEADER
+    # --------------------------------------------------------
+
+    print(
+        "\n" + "=" * 70
+    )
+
+
+    print(
+        "EVALUATION RESULTS"
+    )
+
+
+    print(
+        "=" * 70
+    )
+
+
+    # --------------------------------------------------------
+    # OVERALL ACCURACY
+    # --------------------------------------------------------
+
+    print(
+
+        f"\nOverall Accuracy: "
+        f"{accuracy:.2f}%"
+    )
+
+
+    class_names = (
+        validation_dataset.classes
+    )
+
+
+    # --------------------------------------------------------
+    # CLASSIFICATION REPORT
+    # --------------------------------------------------------
+
+    report = classification_report(
+
+        true_labels,
+
+        predicted_labels,
+
+        labels=range(
+            len(class_names)
+        ),
+
+        target_names=class_names,
+
+        digits=4,
+
+        zero_division=0,
+    )
+
+
+    print(
+        "\nClassification Report:\n"
+    )
+
+
+    print(
+        report
+    )
+
+
+    # --------------------------------------------------------
+    # SAVE CLASSIFICATION REPORT
+    # --------------------------------------------------------
+
+    report_dict = classification_report(
+
+        true_labels,
+
+        predicted_labels,
+
+        labels=range(
+            len(class_names)
+        ),
+
+        target_names=class_names,
+
+        output_dict=True,
+
+        zero_division=0,
+    )
+
+
+    report_df = pd.DataFrame(
+        report_dict
+    ).transpose()
+
+
+    report_path = (
+
+        METRICS_DIR
+
+        / "efficientnet_b0_classification_report.csv"
+    )
+
+
+    report_df.to_csv(
+        report_path
+    )
+
 
     # --------------------------------------------------------
     # CONFUSION MATRIX
     # --------------------------------------------------------
 
     cm = confusion_matrix(
-        all_targets,
-        all_predictions
+
+        true_labels,
+
+        predicted_labels,
+
+        labels=range(
+            len(class_names)
+        ),
     )
 
+
+    print(
+        "\nConfusion Matrix:\n"
+    )
+
+
+    print(
+        cm
+    )
+
+
     # --------------------------------------------------------
-    # SPECIFICITY PER CLASS
+    # SAVE CONFUSION MATRIX CSV
     # --------------------------------------------------------
 
-    specificity_scores = []
+    confusion_matrix_df = pd.DataFrame(
 
-    for class_index in range(NUM_CLASSES):
+        cm,
 
-        tp = cm[class_index, class_index]
+        index=class_names,
 
-        fn = np.sum(cm[class_index, :]) - tp
+        columns=class_names,
+    )
 
-        fp = np.sum(cm[:, class_index]) - tp
 
-        tn = (
-            np.sum(cm)
-            - tp
-            - fn
-            - fp
-        )
+    confusion_matrix_path = (
 
-        specificity = (
-            tn / (tn + fp)
-            if (tn + fp) > 0
-            else 0
-        )
+        METRICS_DIR
 
-        specificity_scores.append(
-            specificity
-        )
+        / "efficientnet_b0_confusion_matrix.csv"
+    )
+
+
+    confusion_matrix_df.to_csv(
+        confusion_matrix_path
+    )
+
+
+    # --------------------------------------------------------
+    # SAVE CONFUSION MATRIX IMAGE
+    # --------------------------------------------------------
+
+    confusion_matrix_image_path = (
+
+        METRICS_DIR
+
+        / "efficientnet_b0_confusion_matrix.png"
+    )
+
+
+    save_confusion_matrix_plot(
+
+        cm,
+
+        class_names,
+
+        confusion_matrix_image_path,
+
+        normalized=False,
+
+    )
+
+
+    # --------------------------------------------------------
+    # SAVE NORMALIZED CONFUSION MATRIX
+    # --------------------------------------------------------
+
+    normalized_confusion_matrix_path = (
+
+        METRICS_DIR
+
+        / "efficientnet_b0_normalized_confusion_matrix.png"
+    )
+
+
+    save_confusion_matrix_plot(
+
+        cm,
+
+        class_names,
+
+        normalized_confusion_matrix_path,
+
+        normalized=True,
+
+    )
+
 
     # --------------------------------------------------------
     # CLASS-WISE METRICS
     # --------------------------------------------------------
 
-    precision_class, recall_class, f1_class, support_class = (
-        precision_recall_fscore_support(
-            all_targets,
-            all_predictions,
-            labels=list(range(NUM_CLASSES)),
-            average=None,
-            zero_division=0
-        )
-    )
+    (
 
-    class_metrics_df = pd.DataFrame({
-        "Class": class_names,
-        "Precision": precision_class,
-        "Recall": recall_class,
-        "F1_Score": f1_class,
-        "Specificity": specificity_scores,
-        "Support": support_class
-    })
+        precision,
 
-    # --------------------------------------------------------
-    # OVERALL METRICS DATAFRAME
-    # --------------------------------------------------------
+        recall,
 
-    average_inference_time = (
-        total_inference_time
-        / total_images
-    )
+        f1,
 
-    metrics_df = pd.DataFrame([{
-        "Accuracy": accuracy,
-        "Precision_Macro": precision_macro,
-        "Recall_Macro": recall_macro,
-        "F1_Macro": f1_macro,
-        "Precision_Weighted": precision_weighted,
-        "Recall_Weighted": recall_weighted,
-        "F1_Weighted": f1_weighted,
-        "MCC": mcc,
-        "Average_Inference_Time_Seconds": (
-            average_inference_time
+        support,
+
+    ) = precision_recall_fscore_support(
+
+        true_labels,
+
+        predicted_labels,
+
+        labels=range(
+            len(class_names)
         ),
-        "Average_Inference_Time_ms": (
-            average_inference_time * 1000
-        )
-    }])
 
-    # --------------------------------------------------------
-    # SAVE RESULTS
-    # --------------------------------------------------------
+        zero_division=0,
 
-    metrics_path = os.path.join(
-        METRICS_DIR,
-        "efficientnet_b0_test_metrics.csv"
     )
 
-    class_metrics_path = os.path.join(
-        METRICS_DIR,
-        "efficientnet_b0_class_metrics.csv"
-    )
 
-    confusion_matrix_path = os.path.join(
-        METRICS_DIR,
-        "efficientnet_b0_confusion_matrix.csv"
-    )
+    classwise_metrics_df = pd.DataFrame({
 
-    predictions_path = os.path.join(
-        METRICS_DIR,
-        "efficientnet_b0_test_predictions.csv"
-    )
+        "class": class_names,
 
-    metrics_df.to_csv(
-        metrics_path,
-        index=False
-    )
+        "precision": precision,
 
-    class_metrics_df.to_csv(
-        class_metrics_path,
-        index=False
-    )
+        "recall": recall,
 
-    cm_df = pd.DataFrame(
-        cm,
-        index=class_names,
-        columns=class_names
-    )
+        "f1_score": f1,
 
-    cm_df.to_csv(
-        confusion_matrix_path
-    )
+        "support": support,
 
-    predictions_df = pd.DataFrame({
-        "True_Label": [
-            class_names[index]
-            for index in all_targets
-        ],
-
-        "Predicted_Label": [
-            class_names[index]
-            for index in all_predictions
-        ],
-
-        "Correct": (
-            all_targets
-            == all_predictions
-        )
     })
 
-    # Add probability columns
-    for class_index, class_name in enumerate(class_names):
 
-        predictions_df[
-            f"Probability_{class_name}"
-        ] = all_probabilities[:, class_index]
+    classwise_metrics_path = (
 
-    predictions_df.to_csv(
-        predictions_path,
-        index=False
+        METRICS_DIR
+
+        / "efficientnet_b0_classwise_metrics.csv"
     )
+
+
+    classwise_metrics_df.to_csv(
+
+        classwise_metrics_path,
+
+        index=False,
+
+    )
+
 
     # --------------------------------------------------------
-    # PRINT RESULTS
+    # OVERALL METRICS
     # --------------------------------------------------------
 
-    print("=" * 70)
-    print("TEST RESULTS")
-    print("=" * 70)
+    weighted_precision = precision_score(
 
-    print(
-        f"\nTest Accuracy: "
-        f"{accuracy * 100:.2f}%"
+        true_labels,
+
+        predicted_labels,
+
+        average="weighted",
+
+        zero_division=0,
+
     )
 
-    print(
-        f"Macro Precision: "
-        f"{precision_macro * 100:.2f}%"
+
+    weighted_recall = recall_score(
+
+        true_labels,
+
+        predicted_labels,
+
+        average="weighted",
+
+        zero_division=0,
+
     )
 
-    print(
-        f"Macro Recall: "
-        f"{recall_macro * 100:.2f}%"
+
+    weighted_f1 = f1_score(
+
+        true_labels,
+
+        predicted_labels,
+
+        average="weighted",
+
+        zero_division=0,
+
     )
 
-    print(
-        f"Macro F1-Score: "
-        f"{f1_macro * 100:.2f}%"
+
+    macro_precision = precision_score(
+
+        true_labels,
+
+        predicted_labels,
+
+        average="macro",
+
+        zero_division=0,
+
     )
 
-    print(
-        f"Weighted F1-Score: "
-        f"{f1_weighted * 100:.2f}%"
+
+    macro_recall = recall_score(
+
+        true_labels,
+
+        predicted_labels,
+
+        average="macro",
+
+        zero_division=0,
+
     )
 
-    print(
-        f"MCC: "
-        f"{mcc:.4f}"
+
+    macro_f1 = f1_score(
+
+        true_labels,
+
+        predicted_labels,
+
+        average="macro",
+
+        zero_division=0,
+
     )
 
-    print(
-        f"Average Inference Time: "
-        f"{average_inference_time * 1000:.2f} ms/image"
+
+    overall_metrics_df = pd.DataFrame({
+
+        "metric": [
+
+            "accuracy_percent",
+
+            "weighted_precision",
+
+            "weighted_recall",
+
+            "weighted_f1_score",
+
+            "macro_precision",
+
+            "macro_recall",
+
+            "macro_f1_score",
+
+        ],
+
+        "value": [
+
+            accuracy,
+
+            weighted_precision,
+
+            weighted_recall,
+
+            weighted_f1,
+
+            macro_precision,
+
+            macro_recall,
+
+            macro_f1,
+
+        ],
+
+    })
+
+
+    overall_metrics_path = (
+
+        METRICS_DIR
+
+        / "efficientnet_b0_overall_metrics.csv"
     )
 
-    print("\nClass-wise Metrics:")
 
-    print(
-        class_metrics_df.to_string(
-            index=False
-        )
+    overall_metrics_df.to_csv(
+
+        overall_metrics_path,
+
+        index=False,
+
     )
 
-    print("\nConfusion Matrix:")
 
-    print(cm_df)
+    # --------------------------------------------------------
+    # PRINT SAVED FILES
+    # --------------------------------------------------------
 
-    print("\n" + "=" * 70)
-    print("EVALUATION COMPLETED")
-    print("=" * 70)
+    print(
+        "\n" + "-" * 70
+    )
 
-    print("\nResults saved to:")
 
-    print(metrics_path)
-    print(class_metrics_path)
-    print(confusion_matrix_path)
-    print(predictions_path)
+    print(
+        "SAVED EVALUATION FILES"
+    )
+
+
+    print(
+        "-" * 70
+    )
+
+
+    print(
+
+        f"\n1. Classification Report:\n"
+        f"{report_path}"
+    )
+
+
+    print(
+
+        f"\n2. Confusion Matrix CSV:\n"
+        f"{confusion_matrix_path}"
+    )
+
+
+    print(
+
+        f"\n3. Confusion Matrix Image:\n"
+        f"{confusion_matrix_image_path}"
+    )
+
+
+    print(
+
+        f"\n4. Normalized Confusion Matrix:\n"
+        f"{normalized_confusion_matrix_path}"
+    )
+
+
+    print(
+
+        f"\n5. Class-wise Metrics:\n"
+        f"{classwise_metrics_path}"
+    )
+
+
+    print(
+
+        f"\n6. Overall Metrics:\n"
+        f"{overall_metrics_path}"
+    )
+
+
+    # --------------------------------------------------------
+    # COMPLETION
+    # --------------------------------------------------------
+
+    print(
+        "\n" + "=" * 70
+    )
+
+
+    print(
+        "EVALUATION COMPLETED SUCCESSFULLY"
+    )
+
+
+    print(
+        "=" * 70
+    )
 
 
 if __name__ == "__main__":
+
     main()
