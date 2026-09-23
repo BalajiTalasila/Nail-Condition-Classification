@@ -79,10 +79,10 @@ MODEL_CONFIGS = {
         "checkpoint": "densenet121_best.pth",
         "architecture": "densenet121"
     },
-    "efficientnet_b0": {
-        "checkpoint": "efficientnet_b0_best.pth",
-        "architecture": "efficientnet_b0"
-    },
+"efficientnet_b0_grouped": {
+    "checkpoint": "efficientnet_b0_grouped_best.pth",
+    "architecture": "efficientnet_b0"
+},
     "proposed_attention_efficientnet_b0": {
         "checkpoint": "proposed_attention_efficientnet_b0_best.pth",
         "architecture": "proposed_attention_efficientnet_b0"

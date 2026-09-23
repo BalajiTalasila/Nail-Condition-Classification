@@ -1,0 +1,10 @@
+,precision,recall,f1-score,support
+Acral_Lentiginous_Melanoma,1.0,1.0,1.0,9.0
+Healthy_Nail,1.0,1.0,1.0,13.0
+Onychogryphosis,1.0,1.0,1.0,4.0
+blue_finger,1.0,1.0,1.0,7.0
+clubbing,1.0,1.0,1.0,24.0
+pitting,1.0,1.0,1.0,14.0
+accuracy,1.0,1.0,1.0,1.0
+macro avg,1.0,1.0,1.0,71.0
+weighted avg,1.0,1.0,1.0,71.0
